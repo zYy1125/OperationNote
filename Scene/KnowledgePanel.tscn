@@ -1,0 +1,133 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Font/appleFonts.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Icon/UITexture/Item2.png" type="Texture" id=2]
+[ext_resource path="res://Icon/UITexture/Icon_SquareStraight.png" type="Texture" id=3]
+[ext_resource path="res://Icon/UITexture/Icon_LookingGlass.png" type="Texture" id=4]
+[ext_resource path="res://Script/KnowledgePanel.gd" type="Script" id=5]
+[ext_resource path="res://Scene/KnowledgeInstruct.tscn" type="PackedScene" id=6]
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 1528, 346 )
+margin_left = 40.0
+margin_right = 48.0
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+extra_spacing_char = 2
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 175, 180 )
+margin_left = 30.0
+margin_right = 35.0
+
+[sub_resource type="DynamicFont" id=2]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=9]
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 195, 223 )
+
+[node name="KnowledgePanel" type="Panel"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_right = 832.0
+margin_bottom = 64.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleBGView" type="Panel" parent="."]
+margin_right = 832.0
+margin_bottom = 32.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="TitleBGView"]
+anchor_left = 0.006
+anchor_right = 0.994
+anchor_bottom = 1.0
+margin_left = 0.32
+margin_right = -0.320068
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 4 )
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleTextBGView" type="Panel" parent="."]
+self_modulate = Color( 0.482353, 0.482353, 0.482353, 1 )
+margin_top = 32.0
+margin_right = 832.0
+margin_bottom = 64.0
+custom_styles/panel = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleText" type="TextEdit" parent="TitleTextBGView"]
+anchor_left = 0.077
+anchor_right = 0.994
+anchor_bottom = 1.0
+margin_left = -0.064003
+margin_right = -0.00799561
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/read_only = SubResource( 9 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/normal = SubResource( 9 )
+custom_styles/completion = SubResource( 9 )
+readonly = true
+syntax_highlighting = true
+override_selected_font_color = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoreText" type="Button" parent="TitleTextBGView"]
+visible = false
+margin_left = 800.0
+margin_top = 8.0
+margin_right = 816.0
+margin_bottom = 24.0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClickUrlBox" type="CheckBox" parent="TitleTextBGView"]
+visible = false
+margin_left = 774.0
+margin_top = 4.0
+margin_right = 798.0
+margin_bottom = 28.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MorePopup" parent="." instance=ExtResource( 6 )]
+
+[connection signal="pressed" from="TitleTextBGView/MoreText" to="." method="_on_MoreText_pressed"]
+[connection signal="pressed" from="TitleTextBGView/ClickUrlBox" to="." method="_on_ClickUrlBox_pressed"]

@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Font/appleFonts.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Script/DocumentChild.gd" type="Script" id=2]
+[ext_resource path="res://Scene/KnowledgeInstruct.tscn" type="PackedScene" id=3]
+
+[sub_resource type="DynamicFont" id=2]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="DocumentChild" type="Button"]
+self_modulate = Color( 1, 1, 1, 0.313726 )
+anchor_right = 0.075
+anchor_bottom = 0.15
+rect_min_size = Vector2( 96, 96 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleLabel" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 2 )
+text = "ABC"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AutoMoveTween" type="Tween" parent="."]
+
+[node name="KnowledgeInstruct" parent="." instance=ExtResource( 3 )]
+
+[connection signal="pressed" from="." to="." method="_on_DocumentChild_pressed"]
+[connection signal="tween_completed" from="AutoMoveTween" to="." method="_on_AutoMoveTween_tween_completed"]

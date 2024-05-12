@@ -1,0 +1,26 @@
+[gd_scene format=2]
+
+[node name="KnowledgePanel" type="Panel"]
+self_modulate = Color( 0.976471, 0, 1, 0.490196 )
+margin_top = 96.0
+margin_right = 936.0
+margin_bottom = 544.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KnowledgeContainer" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = -32.0
+margin_bottom = -32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="GridContainer" parent="KnowledgeContainer"]
+custom_constants/vseparation = 40
+custom_constants/hseparation = 80
+columns = 5

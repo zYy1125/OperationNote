@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Script/DocumentPanel.gd" type="Script" id=1]
+[ext_resource path="res://Scene/SearchPanel.tscn" type="PackedScene" id=2]
+
+[node name="DocumentPanel" type="Panel"]
+self_modulate = Color( 0.976471, 0, 1, 0.490196 )
+margin_top = 96.0
+margin_right = 936.0
+margin_bottom = 544.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SearchPanel" parent="." instance=ExtResource( 2 )]
+margin_top = -96.0
+margin_bottom = -16.0

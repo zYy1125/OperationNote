@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Icon/UITexture/Icon_SquareStraight.png" type="Texture" id=1]
+[ext_resource path="res://Font/appleFonts.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=9]
+size = 12
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 1 )
+region_rect = Rect2( 15, 13.9438, 145, 151.056 )
+margin_left = 9.77672
+margin_right = 11.1734
+margin_top = 9.07838
+margin_bottom = 13.0
+
+[node name="KnowledgeInstruct" type="Popup"]
+visible = true
+margin_right = 512.0
+margin_bottom = 256.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoreText" type="TextEdit" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+custom_styles/read_only = SubResource( 8 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/normal = SubResource( 8 )
+custom_styles/completion = SubResource( 8 )
+show_line_numbers = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DownloadBtn" type="Button" parent="."]
+visible = false
+margin_top = 236.0
+margin_right = 512.0
+margin_bottom = 256.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Download"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
