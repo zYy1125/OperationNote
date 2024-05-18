@@ -18,7 +18,7 @@ var ChioseDownloadUrl="http://www.baidu.com"
 #  知识点汇总 #
 #############
 # 知识节点
-var ArrayAllKnowledgeNodeResources = [
+var ArrayAllKnowledgeNodeResources = ["Linux",
 	"Jdk","Tomcat","Mysql","Oracle","Sqlserver","Nginx","Ceph","Docker",
 	"Ansible","Chrony","Elk","Hadoop","Ntpd","Kubernetes","Prometheus",
 	"RabbitMQ","RocketMQ","Kafka","CentosKernelUpdate","RAID"
@@ -30,6 +30,7 @@ var ArrayAllKnowledgeNodeResources = [
 #############
 # 知识节点对应的数据
 var ArrayAllKnowledgeNodeInfoResources = {
+	"Linux":["Linux常用命令集"],
 	# 闲聊 - 知识点简短介绍
 	"Jdk":["HelloJdk\nJDK是JavaDevelopmentKit的缩写,它是Java语言的软件开发工具包(SDK),JDK是Java开发的核心,包含了Java的运行环境(JVM)、Java工具和Java基础的类库.它提供了构建在Java平台上发布的应用程序、applet和组件的开发环境.JDK中包括编译器(javac)、打包工具(jar)、文档生成器(javadoc)、调试器(jdb)等基本组件,以及完整的JRE(JavaRuntimeEnvironment).此外,JDK还包括了JavaAPI,这是预定义的类库,开发人员需要使用这些类来访问Java的功能.JDK的安装是开发Java程序的第一步准备,因为它包含了编译、运行、调试等关键命令,即使使用Eclipse、NetBeans等开发工具也需要JDK或JRE的支持\n\n常用的Web环境/开发环境需要Jdk支持,就好比Dota地图需要在War3游戏中运行,它在LOL中是运行不了的"],
 	"Tomcat":["HelloTomcat\nTomcat是Apache软件基金会（ApacheSoftwareFoundation）的Jakarta项目中的一个核心项目,由Apache、Sun和其他一些公司及个人共同开发而成.由于有了Sun的参与和支持,最新的Servlet和JSP规范总是能在Tomcat中得到体现,Tomcat5支持最新的Servlet2.4和JSP2.0规范.因为Tomcat技术先进、性能稳定,而且免费,因而深受Java爱好者的喜爱并得到了部分软件开发商的认可,成为比较流行的Web应用服务器\n\nTomcat本身无法直接在计算机上运行,需要依赖Java虚拟机,所以一般情况下Jdk+Tomcat搭配使用,当然正常情况还会搭配一个数据库,如Mysql,被本人戏称Web三件套"],
@@ -162,53 +163,6 @@ var ArrayKnowledgeTOMCATDownloadResourcesTitleText = [
 	"https://pan.baidu.com/s/1pjgNkyLUONv1b8tSt89oAw?pwd=x3jb"
 ]
 
-##########
-#  Nginx #
-##########
-# 知识节点对应的数据 - Nginx
-var ArrayKnowledgeNGINXResourcesTitle = [
-	"1、获取Nginx安装文件以及相关依赖包,上传文件到服务器/tmp",
-	"2、创建本公司专用目录",
-	"3、解压安装文件至自定义目录",
-	"4、统一汇总rpm依赖包路径,然后安装",
-	"5、安装pcre",
-	"6、安装openssl",
-	"7、安装zlib",
-	"8、安装nginx",
-	"9、启动nginx",
-	"10、验证",
-	""
-]
-var ArrayKnowledgeNGINXResourcesTitleText = [
-	"前往'下载'模块下载对应的文件",
-	"mkdir -P /zYy1125/Tools/Nginx",
-	"tar -zxvf nginx1.2.1.tar.gz -C /zYy1125/Tools/Nginx/",
-	"rpm -Uvh /zYy1125/Tools/Nginx/rpm/*.rpm --nodeps --force",
-	"tar -zxvf pcre-8.**.tar.gz\n./configure\nmake\nmake install\n---------------------------------",
-	"tar -zxvf openssl-1.0.**.tar.gz\n./configure\nmake\nmake install\n---------------------------------",
-	"tar -zxvf zlib-1.2.**.tar.gz\n./configure\nmake\nmake install\n---------------------------------",
-	"tar -zxvf nginx-1.15.**.tar.gz\n./configure\nmake\nmake install\n---------------------------------",
-	"./usr/local/nginx/sbin/nginx",
-	"curl -I http://127.0.0.1",
-	""
-]
-# 资源下载地址 - NGINX
-var ArrayKnowledgeNGINXDownloadResourcesTitle = [
-	"NGINX官方下载地址",
-	"NGINX依赖rpm包下载地址",
-	"NGINX依赖服务下载地址",
-	"NGINX下载地址[百度云盘]",
-	"NGINX_win下载地址[百度云盘]",
-	""
-]
-var ArrayKnowledgeNGINXDownloadResourcesTitleText = [
-	"https://nginx.org/en/download.html",
-	"https://pan.baidu.com/s/1H86lX1mkzTezU1zvVIZkiw?pwd=najc",
-	"https://pan.baidu.com/s/19e46ja2GxddGs7kjzKHBkQ?pwd=p5p5",
-	"https://pan.baidu.com/s/1L3hHCCxGvjA_GSlcPKCGTg?pwd=dz5a",
-	"https://pan.baidu.com/s/1HAoxOaO_90lPabb_zhZBRw?pwd=pm5p",
-	""
-]
 	
 
 #############
@@ -216,24 +170,52 @@ var ArrayKnowledgeNGINXDownloadResourcesTitleText = [
 #############
 # 知识节点对应的数据 - Mysql|Key
 var ArrayKnowledgeMysqlResourcesTitle = [
+	"准备工作",
+	"1、解压文件",
+	"2、将文件移动到指定目录改名为mysql",
+	"3、创建用户mysql",
+	"4、创建数据库数据存储目录",
+	"5、添加conf配置参数",
+	"6、初始化数据库",
+	"7、 启动Mysql",
+	"8、配置环境变量",
+	"9、登录",
+	"参考:",
+	"",
+	"",
 	"",
 	""
 ]
 # 知识节点对应的数据 - Mysql|Value
 var ArrayKnowledgeMysqlResourcesTitleText = [
+	"上传文件至服务器/tmp目录下",
+	"[root@master ~] tar -xf mysql-8.0.35-linux-glibc2.17-x86_64.tar.xz",
+	"[root@master ~] mv mysql-8.0.35-linux-glibc2.17-x86_64 /usr/local/mysql",
+	"[root@master ~] groupadd mysql\n[root@master ~] useradd -r -g mysql mysql",
+	"[root@master ~] mkdir -p  /data/mysql\n[root@master ~] chown mysql:mysql -R /data/mysql",
+	"[root@master ~] cat <<EOF > /etc/my.cnf\n[mysqld]\nbind-address=0.0.0.0\nport=3306\nuser=mysql\nbasedir=/usr/local/mysql\ndatadir=/data/mysql\nsocket=/tmp/mysql.sock\nlog-error=/data/mysql/mysql.err\npid-file=/data/mysql/mysql.pid\n#character config\ncharacter_set_server=utf8mb4\nsymbolic-links=0\nexplicit_defaults_for_timestamp=true\nlower_case_table_names=1#初始化之前配置,否则报错无效\nEOF",
+	"[root@master ~] cd usr/local/mysql/bin/\n[root@master ~] ./mysqld --defaults-file=/etc/my.cnf --basedir=/usr/local/mysql/ --datadir=/data/mysql/ --user=mysql --initialize\n[root@master ~] cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql",
+	"[root@master ~] service mysql start\n[root@master ~] ps -ef|grep mysql",
+	"[root@master ~] cat <<EOF >> /etc/profile\nexport PATH=$PATH:/usr/local/mysql/bin\nEOF\n[root@master ~] source /etc/profile",
+	"[root@master ~] cat /data/mysql/mysql.err\n[root@master ~] mysql -u root -p\nmysql > ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '此处设置密码，越复杂越好';\nmysql > flush privileges;\nmysql > use mysql;\nmysql > update user set host='%' where user='root';\nmysql > flush privileges;",
+	"#警告 Warning: World-writable config file ‘/etc/my.cnf’ is ignored->Mysql 权限太大，任何用户都可以访问，数据库忽略这个配置文件 将权限改为644 即可\n#重置密码参数\ndefault_authentication_plugin = mysql_native_password\nhttps://blog.csdn.net/PuuuT/article/details/138471098",
+	"",
+	"",
 	"",
 	""
 ]
 # 资源下载地址 - MYSQL
 var ArrayKnowledgeMYSQLDownloadResourcesTitle = [
-	"MYSQL官方下载地址",
+	"MYSQL官方下载地址[官方]",
 	"MYSQL5.6.*下载地址[百度云盘]",
-	"MYSQL5.7.*下载地址[百度云盘]"
+	"MYSQL5.7.*下载地址[百度云盘]",
+	"Mysql部署文档对应资源文件[百度云盘]"
 ]
 var ArrayKnowledgeMYSQLDownloadResourcesTitleText = [
 	"https://dev.mysql.com/downloads/mysql/",
 	"https://pan.baidu.com/s/1pF_dKeqjuAjFn35ZOKi6Zg?pwd=yfiv",
-	"https://pan.baidu.com/s/1pjgNkyLUONv1b8tSt89oAw?pwd=x3jb"
+	"https://pan.baidu.com/s/1pjgNkyLUONv1b8tSt89oAw?pwd=x3jb",
+	"https://pan.baidu.com/s/1aCrLj09B4oyfIXFONPSIdA?pwd=vj4g"
 ]
 
 #############
@@ -283,6 +265,59 @@ var ArrayKnowledgeSQLSERVERDownloadResourcesTitleText = [
 	"https://pan.baidu.com/s/1pF_dKeqjuAjFn35ZOKi6Zg?pwd=yfiv",
 	"https://pan.baidu.com/s/1pjgNkyLUONv1b8tSt89oAw?pwd=x3jb"
 ]
+
+
+
+##########
+#  Nginx #
+##########
+# 知识节点对应的数据 - Nginx
+var ArrayKnowledgeNGINXResourcesTitle = [
+	"1、获取Nginx安装文件以及相关依赖包,上传文件到服务器/tmp",
+	"2、创建本公司专用目录",
+	"3、解压安装文件至自定义目录",
+	"4、统一汇总rpm依赖包路径,然后安装",
+	"5、安装pcre",
+	"6、安装openssl",
+	"7、安装zlib",
+	"8、安装nginx",
+	"9、启动nginx",
+	"10、验证",
+	""
+]
+var ArrayKnowledgeNGINXResourcesTitleText = [
+	"前往'下载'模块下载对应的文件",
+	"mkdir -P /zYy1125/Tools/Nginx",
+	"tar -zxvf nginx1.2.1.tar.gz -C /zYy1125/Tools/Nginx/",
+	"rpm -Uvh /zYy1125/Tools/Nginx/rpm/*.rpm --nodeps --force",
+	"tar -zxvf pcre-8.**.tar.gz\n./configure\nmake\nmake install\n---------------------------------",
+	"tar -zxvf openssl-1.0.**.tar.gz\n./configure\nmake\nmake install\n---------------------------------",
+	"tar -zxvf zlib-1.2.**.tar.gz\n./configure\nmake\nmake install\n---------------------------------",
+	"tar -zxvf nginx-1.15.**.tar.gz\n./configure\nmake\nmake install\n---------------------------------",
+	"./usr/local/nginx/sbin/nginx",
+	"curl -I http://127.0.0.1",
+	""
+]
+# 资源下载地址 - NGINX
+var ArrayKnowledgeNGINXDownloadResourcesTitle = [
+	"NGINX官方下载地址",
+	"NGINX依赖rpm包下载地址",
+	"NGINX依赖服务下载地址",
+	"NGINX下载地址[百度云盘]",
+	"NGINX_win下载地址[百度云盘]",
+	""
+]
+var ArrayKnowledgeNGINXDownloadResourcesTitleText = [
+	"https://nginx.org/en/download.html",
+	"https://pan.baidu.com/s/1H86lX1mkzTezU1zvVIZkiw?pwd=najc",
+	"https://pan.baidu.com/s/19e46ja2GxddGs7kjzKHBkQ?pwd=p5p5",
+	"https://pan.baidu.com/s/1L3hHCCxGvjA_GSlcPKCGTg?pwd=dz5a",
+	"https://pan.baidu.com/s/1HAoxOaO_90lPabb_zhZBRw?pwd=pm5p",
+	""
+]
+
+
+
 
 #############
 #    Ceph   #
@@ -353,20 +388,18 @@ var ArrayKnowledgeAnsibleResourcesTitleText = [
 #############
 # 知识节点对应的数据 - Chrony|Key
 var ArrayKnowledgeChronyResourcesTitle = [
-	"1、安装",
-	"2、修改主节点|从节点配置文件",
-	"3、同步主节点|从节点",
-	"4、查看同步状态",
-	"5、手动立即同步",
+	"1、yum安装服务",
+	"2、配置主节点时间同步[master]",
+	"3、其他节点配置时间同步[node]",
+	"4、验证[*]",
 	""
 ]
 # 知识节点对应的数据 - Chrony|Value
 var ArrayKnowledgeChronyResourcesTitleText = [
 	"yum install chrony -y",
-	"[root@cephmaster rbd-demo]# vim /etc/chrony.conf\n# Use public servers from the pool.ntp.org project.\n# Please consider joining the pool (http://www.pool.ntp.org/join.html).\nserver 0.202.108.22.5\nserver 1.baidu.com iburst\nserver 2.sina.com.cn iburst\nserver 3.free.aliyun.com iburst\n\n# Record the rate at which the system clock gains/losses time.\ndriftfile /var/lib/chrony/drift\n# Allow the system clock to be stepped in the first three updates\n# if its offset is larger than 1 second.\nmakestep 1.0 3\n# Enable kernel synchronization of the real-time clock (RTC).\nrtcsync\n# Enable hardware timestamping on all interfaces that support it.\n#hwtimestamp *\nallow 0.0.0.0/24\nallow 192.168.1.0/24\n\n[root@ceph02 ~]# vim /etc/chrony.conf\n# Use public servers from the pool.ntp.org project.\n# Please consider joining the pool (http://www.pool.ntp.org/join.html).\nserver 192.168.1.100 iburst\n# Record the rate at which the system clock gains/losses time.\ndriftfile /var/lib/chrony/drift\n# Allow the system clock to be stepped in the first three updates# if its offset is larger than 1 second.\nmakestep 1.0 3\n# Enable kernel synchronization of the real-time clock (RTC).\nrtcsync\n# Enable hardware timestamping on all interfaces that support it.\n#hwtimestamp *\n# Increase the minimum number of selectable sources required to adjust\n# the system clock.\n#minsources 2\nallow 192.168.1.100",
-	"[root@cephmaster rbd-demo]#:systemctl restart chronyd.service\n[root@cephmaster rbd-demo]#:systemctl enable chronyd.service\n[root@ceph02 ~]#:chronyc sources -v",
-	"systemctl status chronyd -l",
-	"chronyc -a makestep",
+	"[root@harbor ~]cat > /etc/chrony.conf << EOF \npool ntp.aliyun.com iburst\ndriftfile /var/lib/chrony/drift\nmakestep 1.0 3\nrtcsync\nallow 192.168.2.0/24#网段192.168.2.*\nlocal stratum 10\nkeyfile /etc/chrony.keys\nleapsectz right/UTC\nlogdir /var/log/chrony\nEOF",
+	"[root@* ~]cat > /etc/chrony.conf << EOF\npool 192.168.2.10 iburst#修改成各节点与之同步IP\ndriftfile /var/lib/chrony/drift\nmakestep 1.0 3\nrtcsync\nkeyfile /etc/chrony.keys\nleapsectz right/UTC\nlogdir /var/log/chrony\nEOF",
+	"[root@* ~]systemctl restart chronyd ; systemctl enable chronyd\n[root@* ~]chronyc sources -v",
 	""
 ]
 
@@ -393,11 +426,24 @@ var ArrayKnowledgeElkResourcesTitleText = [
 #############
 # 知识节点对应的数据 - Ntpd|Key
 var ArrayKnowledgeNtpdResourcesTitle = [
-	"",
+	"#安装ntp、ntpdate、ntp-doc[*]",
+	"#设置防火墙端口123[*]",
+	"#设置主机名[*]",
+	"#修改主节点配置[m]",
+	"#修改子节点配置[n]",
+	"#重启ntpd服务以及加入自启动服务[*]",
+	"#验证同步服务[*]",
 	""
 ]
 # 知识节点对应的数据 - Ntpd|Value
 var ArrayKnowledgeNtpdResourcesTitleText = [
+	"[root@* ~]yum install ntp ntpdate ntp-doc -y",
+	"[root@* ~]firewall-cmd --permanent --add-port=123/udp\n[root@* ~]firewall-cmd --reload",
+	"[root@* ~]hostnamectl set-hostname ntpmaster#master\n[root@* ~]hostnamectl set-hostname ntp01#node\n[root@* ~]cat <<EOF > /etc/hosts\n192.168.1.100 ntpmaster\n192.168.1.101 ntp01\nEOF#[*]",
+	"[root@* ~]cat <<EOF > /etc/hosts\n192.168.1.100 ntpmaster\n192.168.1.101 ntp01\nEOF",
+	"[root@* ~]cat <<EOF > /etc/ntpd.conf\nserver ntpmaster\nfudge ntpmaster stratum 0\nrestrict ntpmaster nomodify notrap noquery\nEOF",
+	"[root@* ~]systemctl restart ntpd\n[root@* ~]systemctl enable ntpd",
+	"[root@* ~]ntpq -p#验证同步服务[m]\n[root@* ~]ntpdate -u ntpmaster#同步ntpd主节点服务[n]",
 	"",
 	""
 ]
@@ -562,12 +608,66 @@ var ArrayKnowledgeCentosKernelResourcesTitleText = [
 
 
 
+# Linux常用命令 - LinuxInstruct|Value
+var ArrayKnowledgeLinuxInstructResourcesTitle = [
+	"ls",
+	"cd",
+	"mv",
+	"cp",
+	"cat",
+	"tail",
+	"less",
+	"yum",
+	"rpm",
+	"kill",
+	"free",
+	"df",
+	"top",
+	"fstab",
+	"fdisk",
+	"lsblk",
+	"mount",
+	"umount",
+	"ping",
+	"telnet",
+	"trancert",
+	"ifconfig",
+	"ip addr",
+	"",
+	"sed",
+	"awk",
+	"",
+	"",
+	"",
+	"find",
+	"",
+]
+var ArrayKnowledgeLinuxInstructResourcesTitleText = [
+	"ls:查看目录信息\n    关键字:\n查看当前目录下所有文件以及详细信息:\n	[root@* ~]ls -la",
+	"cd:进入指定目录",
+	"mv:重命名文件|移动文件\n    关键字:\n重命名该文件:\n	[root@* ~]mv a b\n移动/tmp/A文件到/usr/:\n	[root@* ~]mv /tmp/A /usr/",
+	"",
+	"","","",
+	"","",
+	"",
+	"free:查看服务器内存信息\n关键字：sync、caches\n查看内存信息:\n[root@* ~]free -h\n-------------------------------------------------------------------------------------\n			total        used        free      shared  buff/cache   available\nMem:		3.7G       685M       1.1G       212M     1.9G          2.5G\nSwap:	 	0B          0B         0B\n-------------------------------------------------------------------------------------\ntotal   总物理内存\nused    已使用内存，一般情况这个值会比较大，因为这个值包括了cache+应用程序使用的内存\nfree    完全未被使用的内存\nshared  应用程序共享内存\nbuffers 缓存，主要用于目录方面,inode值等(ls大目录可看到这个值增加)\ncached  缓存，用于已打开的文件\n-------------------------------------------------------------------------------------\n手动释放内存:[sync - 将缓存数据写入硬盘，避免数据丢失]\n[root@* ~]echo 0 > /proc/sys/vm/drop_caches\n[root@* ~]echo 1 > /proc/sys/vm/drop_caches\n[root@* ~]echo 2 > /proc/sys/vm/drop_caches\n[root@* ~]echo 3 > /proc/sys/vm/drop_caches#[常用此命令进行测试环境释放内存][生产环境慎用]\n#(0:不释放 1：释放页缓存 2：释放dentries和inodes 3：释放所有缓存)\n","","",
+	"","","",
+	"","",
+	"","","",
+	"ifconfig:查看当前服务器网络信息\n    关键字:ipaddr、systemctl\n参考示例:[建议仅参考IP+DNS+BOOTPROTO配置|其余配置默认即可]\n    TYPE=Ethernet\n    PROXY_METHOD=none\n    BROWSER_ONLY=no\n    BOOTPROTO=\"static\"\n    DEFROUTE=yes\n    IPV4_FAILURE_FATAL=no\n    IPV6INIT=yes\n    IPV6_AUTOCONF=yes\n    IPV6_DEFROUTE=yes\n    IPV6_FAILURE_FATAL=no\n    IPV6_ADDR_GEN_MODE=stable-privacy\n    NAME=enp4s0\n    UUID=489db9fe-d50b-47a1-b031-0ee7fc9cdfff\n    DEVICE=enp4s0\n    ONBOOT=yes\n    IPADDR=\"192.168.199.110\"#更换实际IP\n    NETMASK=\"255.255.255.0\"\n    GATEWAY=\"192.168.199.1\"#更换实际网关\n    DNS1=\"8.8.8.8\"\n    DNS2=\"114.114.114.114\"\n重启网卡:\n	[root@* ~]systemctl restart network\n","","",
+	"","","",
+	"","",
+	"find：查找命令是Linux系统中最重要和最常用的命令之一。查找用于根据与参数匹配的文件指定的条件来搜索和查找文件和目录列表的命令.查找可以在各种条件下使用.您可以通过权限.用户.组.文件类型.日期.大小等可能的条件查找文件\n-------------------------------------------------------------------------------------------------\n# 根据名称查找文件的基本查找命令\n      find test.c 在当前工作目录中查找名称为test.c的所有文件[精确查找]\n      find /home -name test 查找指定目录的所有文件,名称为test\n      find /home -iname test 查找指定目录的所有文件,名称为test[忽略大小写]\n      find / -type d -name test 在/目录中查找名称为test的所有目录\n      find / -type f -name test.php 在/目录中遍历查找所有名称为test.php的文件\n-------------------------------------------------------------------------------------------------\n# 根据他们的权限查找文件\n      find -type f -perm 0777 -print 查找权限为777权限的文件\n      find / -type f ! -perm 777 查找所有文件未经许可777\n      find / -perm /u=r 查找只读文件\n      find / -perm /a=x 查找可执行文件\n      find / tmp -type f -empty 查找指定路径下所有空文件\n      find / tmp -type d -empty 查找指定路径下的空目录\n      find /tmp -type f -name \".*\" 查找隐藏文件\n-------------------------------------------------------------------------------------------------\n# 根据用户组查找文件\n      find ~ -user A 查找指定目录下用户A的文件\n      find /home -group B 查找指定目录下B组的文件\n      find ~ -user C -iname \"*.c\" 查找用户的指定格式文件\n-------------------------------------------------------------------------------------------------\n# 根据日期查找文件\n      find / -user root -name test.c 查找最近50天修改的文件\n      find / -atime 50 查找最近50天访问的文件\n      find / -mtime +50 -mtime -100 查找50-100天内修改的文件\n      find / -cmin -60 查找过去1小时更改的文件\n      find / -mmin -60 查找过去1小时修改的文件\n      find  / amin -60 查找1小时内访问过的文件\n-------------------------------------------------------------------------------------------------\n# 根据文件大小查找文件\n      find / -size 50M 找到50M的文件\n      find / -size +50M -size -100M 查找50-100M的文件\n      find / -type f -name *.mp3 -size +10M 查找大于10M的mp3文件\n常用:\n      find / -name abc.txt 在根目录下查找文件名为abc.txt的文件\n      find -L / -xdev -inum 69055934 2>/dev/null 在根目下根据Inode号查找对应的文件[常用于硬连接比对]\n-------------------------------------------------------------------------------------------------",
+	""
+]
+
+
+
+
+#-------------------------------------------------------------------------
+
 # 定义每个知识点部署文档的下载路径[保存文件到固定位置]
 var ArrayAllKnowledgeDocumentDownloadUrlResources = []
-
-
-
-
 
 # rocketmq
 # https://rocketmq.apache.org/zh/download/

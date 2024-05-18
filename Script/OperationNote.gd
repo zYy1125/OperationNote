@@ -166,6 +166,9 @@ func _on_KnowledgeNode_input(event,body_item):
 			"RAID":
 				_chioseKnowledgeKey("RAID")
 				pass
+			"Linux":
+				_chioseKnowledgeKey("Linux")
+				pass
 		pass
 	pass
 

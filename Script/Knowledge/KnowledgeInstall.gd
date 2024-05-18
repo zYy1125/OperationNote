@@ -42,6 +42,11 @@ func _ChioseKnowledgeNode(knowledgeNode):
 			)
 			pass
 		"Mysql":
+			_initKnowledgeVBox(
+				allResources.ArrayKnowledgeMysqlResourcesTitle.size(),
+				allResources.ArrayKnowledgeMysqlResourcesTitle,
+				allResources.ArrayKnowledgeMysqlResourcesTitleText
+			)
 			pass
 		"Oracle":
 			pass
@@ -87,6 +92,11 @@ func _ChioseKnowledgeNode(knowledgeNode):
 		"Hadoop":
 			pass
 		"Ntpd":
+			_initKnowledgeVBox(
+				allResources.ArrayKnowledgeNtpdResourcesTitle.size(),
+				allResources.ArrayKnowledgeNtpdResourcesTitle,
+				allResources.ArrayKnowledgeNtpdResourcesTitleText
+			)
 			pass
 		"Kubernetes":
 			_initKnowledgeVBox(
@@ -113,6 +123,13 @@ func _ChioseKnowledgeNode(knowledgeNode):
 				allResources.ArrayKnowledgeCentosKernelResourcesTitle.size(),
 				allResources.ArrayKnowledgeCentosKernelResourcesTitle,
 				allResources.ArrayKnowledgeCentosKernelResourcesTitleText
+			)
+			pass
+		"Linux":
+			_initKnowledgeVBox(
+				allResources.ArrayKnowledgeLinuxInstructResourcesTitle.size(),
+				allResources.ArrayKnowledgeLinuxInstructResourcesTitle,
+				allResources.ArrayKnowledgeLinuxInstructResourcesTitleText
 			)
 			pass
 	pass
