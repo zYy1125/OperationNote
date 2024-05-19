@@ -24,4 +24,5 @@
 
 
 使用说明:
-  将代码下载至本地后,通过godot3.*程序导入project.godot后,在godot编辑器中导出exe即可在windows平台下使用.或者直接使用作者上传的"小棉袄".exe
+
+    将代码下载至本地后,通过godot3.*程序导入project.godot后,在godot编辑器中导出exe即可在windows平台下使用.或者直接使用作者上传的"小棉袄".exe
