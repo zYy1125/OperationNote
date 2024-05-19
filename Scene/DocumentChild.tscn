@@ -23,7 +23,6 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 2 )
-text = "ABC"
 align = 1
 valign = 1
 autowrap = true
@@ -36,5 +35,11 @@ __meta__ = {
 
 [node name="KnowledgeInstruct" parent="." instance=ExtResource( 3 )]
 
+[node name="DownloadBtn" parent="KnowledgeInstruct" index="1"]
+visible = true
+
 [connection signal="pressed" from="." to="." method="_on_DocumentChild_pressed"]
 [connection signal="tween_completed" from="AutoMoveTween" to="." method="_on_AutoMoveTween_tween_completed"]
+[connection signal="pressed" from="KnowledgeInstruct/DownloadBtn" to="." method="_on_DownloadBtn_pressed"]
+
+[editable path="KnowledgeInstruct"]

@@ -23,13 +23,14 @@ func _ready():
 # 创建文档小节点
 # 默认创建10个
 func _initDocumentChild():
-	for i in range(10):
-		_createDocumentChild()
+	for i in range(allResources.ArrayAllDocumentDownloadPanelResources.size()):
+		_createDocumentChild(i)
 		pass
 	pass
-func _createDocumentChild():
+func _createDocumentChild(i):
 	documentChild = DocumentChild.instance()
 	self.add_child(documentChild)
+	documentChild._getDocumentChildInfo(i)
 	pass
 
 

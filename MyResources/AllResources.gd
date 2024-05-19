@@ -76,8 +76,8 @@ var ArrayKnowledgeInstructResources = {
 ###########
 # 知识节点对应的数据 - JDK|Key
 var ArrayKnowledgeJDKResourcesTitle = [
-	"特殊情况-情况1:使用新服务器部署环境",
-	"特殊情况-情况2:非新服务器,存在公用服务器可能",
+	"情况1:使用新服务器部署环境",
+	"情况2:非新服务器,存在公用服务器可能",
 	"0、查询默认安装的Java服务并卸载不匹配的Java版本",
 	"1、获取JDK安装包",
 	"2、上传文件到服务器/tmp",
@@ -92,7 +92,7 @@ var ArrayKnowledgeJDKResourcesTitle = [
 # 知识节点对应的数据 - JDK|Value
 var ArrayKnowledgeJDKResourcesTitleText = [
 	"跳过情况2,移步至0",
-	"通过java -version验证是否配置环境变量来判断存在其他厂商使用的可能[万不得已的情况下移步最后一行]",
+	"通过java -version验证当前环境是否已经安装|已安装版本是否支持本公司项目,如支持,则结束安装,如不支持则采用指定jdk路径方式[移步最后一行]",
 	"rpm -qa | grep java | xargs rpm -e --nodeps",
 	"请移步至下载模块",
 	"通过Xftp连接服务器/tmp目录",
@@ -101,7 +101,7 @@ var ArrayKnowledgeJDKResourcesTitleText = [
 	"export JAVA_HOME=/Tools/jdk/jdk1.8.0_40\nexport PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/jre/bin",
 	"source /etc/profile",
 	"java -version",
-	"{仅执行1-4,在项目启动文件中指定jdk的路径,也能够保证项目正常运行}",
+	"{仅执行1-4,在项目启动文件中指定jdk的路径,可参考Tomcat配置如何指定jdk运行,也能够保证项目正常运行}",
 	""
 ]
 # 资源下载地址 - JDK|DownlaodKey
@@ -693,3 +693,33 @@ var ArrayKnowledgeXXXXXDownloadResourcesTitleText = [
 	"https://pan.baidu.com/s/1pF_dKeqjuAjFn35ZOKi6Zg?pwd=yfiv",
 	"https://pan.baidu.com/s/1pjgNkyLUONv1b8tSt89oAw?pwd=x3jb"
 ]
+
+
+# 定义文档下载相关信息
+# [标题|报错文字描述|文档下载地址以及预览页面]
+var ArrayAllDocumentDownloadPanelResources = {
+	0:
+		["需求确认单[模板]",
+			"需求确认单",
+			"https://pan.baidu.com/s/1OC3_m2Cj9DPsfDtaWuYq7A?pwd=w7rm"],
+	1:
+		["项目需求确认书[模板]",
+			"项目需求确认书",
+			"https://pan.baidu.com/s/1_KjJFLFCJZ2BcFKqZYEdag?pwd=7p4f"],
+	2:
+		["远程错误\n函数不支持\n[Windows]",
+			"远程桌面发生身份验证错误,要求的函数不受支持,这可能是由于CredSSP加密数据库修正[Windows]",
+			"https://pan.baidu.com/s/1Ej0DlFIVQRwGcgr3q_oqag?pwd=qyqv"],
+	3:
+		["远程错误\n许可证问题\n[Windows]",
+			"由于没有远程桌面授权服务器可以提供许可证,远程会话被中断.请跟服务器管理员联系[Windows]",
+			"https://pan.baidu.com/s/1EUmQoPEz3dyB66IPWkSdzg?pwd=97mq"],
+	4:
+		["部署\nJava-Web项目\n[零基础]",
+			"如何部署一个实际工作中的Web项目[零基础]",
+			"https://pan.baidu.com/s/1sHegkEuiZj7YpVI3ITLqZQ?pwd=qf8p"],
+	5:
+		["[模板]",
+			"",
+			"https://www.baidu.com"]
+}
