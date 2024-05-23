@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Font/appleFonts.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Icon/UITexture/Icon_Sqiu.png" type="Texture" id=2]
 [ext_resource path="res://Icon/UITexture/Icon_SqiuareTilt.png" type="Texture" id=3]
 [ext_resource path="res://Script/TransferNode.gd" type="Script" id=4]
 
@@ -163,6 +164,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AboutBtn" type="Button" parent="OperationNoteKnowledgePanel/ListTitlePanel"]
+margin_top = 320.0
+margin_right = 168.0
+margin_bottom = 384.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboutLabel" type="Label" parent="OperationNoteKnowledgePanel/ListTitlePanel/AboutBtn"]
+margin_right = 192.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 2 )
+text = "  关于"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="OperationNoteKnowledgePanel/ListTitlePanel/AboutBtn"]
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon_Sqiu" type="TextureRect" parent="OperationNoteKnowledgePanel/ListTitlePanel"]
+visible = false
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ListServicePanel" type="Panel" parent="OperationNoteKnowledgePanel"]
 self_modulate = Color( 0.545098, 0, 1, 0.0980392 )
 margin_left = 192.0
@@ -195,5 +235,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ListAboutPanel" type="Panel" parent="OperationNoteKnowledgePanel"]
+visible = false
+self_modulate = Color( 0.545098, 0, 1, 0.0980392 )
+margin_left = 192.0
+margin_top = 24.0
+margin_right = 1128.0
+margin_bottom = 568.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="OperationNoteKnowledgePanel/ListTitlePanel/ServiceBtn" to="." method="_on_ServiceBtn_pressed"]
 [connection signal="pressed" from="OperationNoteKnowledgePanel/ListTitlePanel/DocumentBtn" to="." method="_on_DocumentBtn_pressed"]
+[connection signal="pressed" from="OperationNoteKnowledgePanel/ListTitlePanel/QuestionBtn" to="." method="_on_QuestionBtn_pressed"]
+[connection signal="pressed" from="OperationNoteKnowledgePanel/ListTitlePanel/HomeBtn" to="." method="_on_HomeBtn_pressed"]
+[connection signal="pressed" from="OperationNoteKnowledgePanel/ListTitlePanel/AboutBtn" to="." method="_on_AboutBtn_pressed"]

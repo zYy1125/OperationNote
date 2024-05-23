@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Icon/UITexture/Icon_Star.png" type="Texture" id=1]
+[ext_resource path="res://Script/AboutPanel.gd" type="Script" id=2]
+[ext_resource path="res://Font/appleFonts.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+outline_size = 1
+use_mipmaps = true
+use_filter = true
+extra_spacing_char = 6
+font_data = ExtResource( 3 )
+
+[node name="AboutPanel" type="Panel"]
+self_modulate = Color( 0.976471, 0, 1, 0.490196 )
+margin_right = 936.0
+margin_bottom = 544.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+margin_left = 360.0
+margin_top = 160.0
+margin_right = 536.0
+margin_bottom = 224.0
+custom_fonts/font = SubResource( 1 )
+text = "GitHub"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ValueUrl" type="Label" parent="."]
+margin_left = 128.0
+margin_top = 192.0
+margin_right = 768.0
+margin_bottom = 320.0
+text = "https://github.com/zYy1125/OperationNote"
+align = 1
+valign = 1
+
+[node name="ClcikBtn" type="Button" parent="."]
+margin_left = 416.0
+margin_top = 320.0
+margin_right = 480.0
+margin_bottom = 384.0
+icon = ExtResource( 1 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="ClcikBtn" to="." method="_on_ClcikBtn_pressed"]

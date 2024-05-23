@@ -96,9 +96,9 @@ var ArrayKnowledgeJDKResourcesTitleText = [
 	"rpm -qa | grep java | xargs rpm -e --nodeps",
 	"请移步至下载模块",
 	"通过Xftp连接服务器/tmp目录",
-	"mkdir -p /Tools/jdk/",
-	"tar -zxvf /tmp/jdk-*****-linux-x64.tar.gz -C /zYy1125/Tools/Jdk/",
-	"export JAVA_HOME=/Tools/jdk/jdk1.8.0_40\nexport PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/jre/bin",
+	"mkdir -p /zYy1125/Tools/Jdk/",
+	"tar -zxvf /tmp/jdk-8u40-linux-x64.gz -C /zYy1125/Tools/Jdk/",
+	"cat <<EOF >> /etc/profile\nexport JAVA_HOME=/zYy1125/Tools/Jdk/jdk1.8.0_40\nexport PATH=$JAVA_HOME/bin:$PATH\nEOF",
 	"source /etc/profile",
 	"java -version",
 	"{仅执行1-4,在项目启动文件中指定jdk的路径,可参考Tomcat配置如何指定jdk运行,也能够保证项目正常运行}",
@@ -527,12 +527,22 @@ var ArrayKnowledgePrometheusResourcesTitleText = [
 #############
 # 知识节点对应的数据 - RabbitMQ|Key
 var ArrayKnowledgeRabbitMQResourcesTitle = [
-	"",
+	"安装依赖",
+	"安装Erlang",
+	"安装socat",
+	"配置Erlang环境变量",
+	"安装RabbitMQ",
+	"#添加用户",
 	""
 ]
 # 知识节点对应的数据 - RabbitMQ|Value
 var ArrayKnowledgeRabbitMQResourcesTitleText = [
-	"",
+	"[root@master ]#yum -y install gcc glibc-devel make ncurses-devel openssl-devel xmlto perl wget",
+	"# 下载文件编译\n[root@master ]#wget http://erlang.org/download/otp_src_21.3.tar.gz\n[root@master ]#tar -xvf otp_src_21.3.tar.gz\n[root@master ]#cd otp_src_21.3\n[root@master ]#./configure --prefix=/usr/local/erlang\n[root@master ]#make && make install",
+	"[root@master ]#yum install -y socat\n#没有外网时可以尝试使用资源文件包内的rpm文件离线安装",
+	"# 修改环境变量\n[root@master ]# vim /etc/profile\n#export PATH=$PATH:/usr/local/erlang/bin\n#验证\n[root@master ]# erl",
+	"[root@master ]#mkdir -p /zYy1125/Tools/\n# 将文件拷贝移动至/zYy1125/Tools/\n[root@master ]#cd /zYy1125/Tools/\n[root@master ]#wget https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.4/rabbitmq-server-generic-unix-3.8.4.tar.xz\n[root@master ]#xz -d rabbitmq-server-generic-unix-3.8.4.tar.xz\n[root@master ]#tar -xvf rabbitmq-server-generic-unix-3.8.4.tar\n# 修改环境变量\n[root@master ]#vim /etc/profile\n#export PATH=$PATH:/zYy1125/Tools/rabbitmq_server-3.8.4/sbin\n[root@master ]#source /etc/profile\n后台启动rabbitmq服务\n[root@master ]#cd /zYy1125/Tools/rabbitmq_server-3.8.4/sbin\n[root@master ]#./rabbitmq-server -detached\n[root@master ]#./rabbitmq-server start",
+	"[root@master ]#./rabbitmqctl add_user admin admin\n[root@master ]#./rabbitmqctl set_user_tags admin administrator\n[root@master ]#./rabbitmqctl set_permissions -p / admin \".*\" \".*\" \".*\"\n#初始化控件\n[root@master ]#./rabbitmq-plugins enable rabbitmq_management\n\n\n\nPs:若wget下载文件超时,可乘坐飞机到国外下载，或者在下载模块中找到对应地址下载.",
 	""
 ]
 #############
@@ -540,12 +550,28 @@ var ArrayKnowledgeRabbitMQResourcesTitleText = [
 #############
 # 知识节点对应的数据 - RocketMQ|Key
 var ArrayKnowledgeRocketMQResourcesTitle = [
-	"",
+	"安装前置准备",
+	"1、安装Jdk",
+	"2、安装RocketMQ",
+	"3、修改NameServer启动配置",
+	"4、Broker服务搭建",
+	"5、验证:RocketMQ消息发送与消费",
+	"# 关闭RocketMQ服务",
+	"# 关闭NameServer",
+	"# 参考地址:",
 	""
 ]
 # 知识节点对应的数据 - RocketMQ|Value
 var ArrayKnowledgeRocketMQResourcesTitleText = [
-	"",
+	"[root@worker1 /]# hostnamectl set-hostname worker1\n# 单点部署非集群环境可以忽略此操作\n[root@worker1 /]# cat <<EOF >> /etc/hosts\n192.168.2.6 worker1\n192.168.2.7 worker2\n192.168.2.8 worker3\nEOF\n# 下载mq文件 - 在下载模块中下载文件",
+	"# 参考Jdk部署模块",
+	"[root@worker1 /]# mkdir -p /app/rocketMQ\n[root@worker1 /]# cd /app/rocketMQ\n# 将rocketmq-all-5.1.0-bin-release.zip文件上传移动到/app/rocketMQ\n[root@worker1 /]# unzip rocketmq-all-5.1.0-bin-release.zip\n[root@worker1 /]# cp -R /etc/profile /root/profileBAK\n[root@worker1 /]# cat <<EOF >> /etc/profile\nexport JAVA_HOME=/zYy1125/Tools/Jdk/jdk1.8.0_40\nexport ROCKETMQ_HOME=//app/rocketMQ/rocketmq-all-5.1.0-bin-release\nexport PATH=$ROCKETMQ_HOME/bin:$JAVA_HOME/bin:$PATH\nExport NAMESRV_ADDR='worker1:9876;worker2:9876;worker3:9876'\nEOF\n[root@worker1 /]# source /etc/profile",
+	"[root@worker1 /]# cd /app/rocketMQ/rocketmq-all-5.1.0-bin-release/bin\n[root@worker1 /]# vim runserver.sh\n#将JAVA_OPT=\"${JAVA_OPT} -server -Xms4g -Xmx4g -Xmn2g -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m\"改为JAVA_OPT=\"${JAVA_OPT} -server -Xms512m -Xmx512m -Xmn256m\n[root@worker1 /]# nohup ./mqnamesrv &	#启动\n#[root@worker1 /]# tail -f nohup.out	#查看日志\n#[root@worker1 /]# jps",
+	"[root@worker1 /]# vim runbroker.sh\n#将JAVA_OPT=\"${JAVA_OPT} -server -Xms8g -Xmx8g\"改为JAVA_OPT=\"${JAVA_OPT} -server -Xms512m -Xmx512m\"\n#修改broker配置文件\n[root@worker1 /]# cd ../conf/\n[root@worker1 /]# cat <<EOF >> broker.conf\n#允许自动创建topic\nautoCreateTopicEnable=true\n#添加nameserver地址\nnamesrvAddr=localhost:9876\nEOF\n启动broker\n[root@worker1 /]# cd ../bin\n[root@worker1 /]# nohup ./mqbroker -c ../conf/broker.conf &  #启动broker\n[root@worker1 /]# tail -f nohup.out#查看日志",
+	"#在bin目录下执行以下命令测试消息发送\n[root@worker1 /]# cd /app/rocketMQ/rocketmq-all-5.1.0-bin-release/bin\n[root@worker1 /]# export NAMESRV_ADDR='localhost:9876'\n[root@worker1 /]# ./tools.sh org.apache.rocketmq.example.quickstart.Producer\n#执行以下命令测试消息接收\n[root@worker1 /]# export NAMESRV_ADDR='localhost:9876'\n[root@worker1 /]# ./tools.sh org.apache.rocketmq.example.quickstart.Consumer",
+	"[root@worker1 /]# sh ./mqshutdown broker",
+	"[root@worker1 /]# sh ./mqshutdown namesrv",
+	"https://blog.csdn.net/weixin_45818069/article/details/136243804   --文档地址\nhttps://rocketmq.apache.org/download/   --rocketmq官网",
 	""
 ]
 #############
@@ -719,7 +745,71 @@ var ArrayAllDocumentDownloadPanelResources = {
 			"如何部署一个实际工作中的Web项目[零基础]",
 			"https://pan.baidu.com/s/1sHegkEuiZj7YpVI3ITLqZQ?pwd=qf8p"],
 	5:
-		["[模板]",
+		["自动定时传输文件\n[Windows]",
+			"通过FlashFtp实现定时异地备份文件的一种方式",
+			"https://pan.baidu.com/s/1PV3JhupLVrSDo64htZYszA?pwd=j7c0"],
+	6:
+		["Docker部署[离线版]",
+			"通过下载压缩文件离线部署Docker",
+			"https://pan.baidu.com/s/1S4hE-igUb2UhsNmJzz9osQ?pwd=rzhq"],
+	7:
+		["清除系统垃圾文件[Windows]",
+			"清除系统垃圾文件[Windows]",
+			"https://pan.baidu.com/s/1D-iH1GcaKOKGAzzAwvzZpw?pwd=6vxr"],
+	8:
+		["记录登录日志[Windows]",
+			"记录登录日志[Windows]",
+			"https://pan.baidu.com/s/1kX6l9BYdT0PKxKMwisVCwA?pwd=e511"],
+	9:
+		["Centos7升级内核",
+			"Centos7升级内核",
+			"https://pan.baidu.com/s/18fkyIA1RAOHVdZYd_fx3lQ?pwd=x8de"],
+	10:
+		["Mysql8部署[Centos7]",
+			"Mysql8部署[Centos7]",
+			"https://pan.baidu.com/s/19HR-dBwpFVLDffnm27kYaA?pwd=7xcr"],
+	11:
+		["Windows补丁DirectXRepair",
+			"修复Windows系统下.dll文件丢失的修复程序",
+			"https://pan.baidu.com/s/1ETtFp59eJ-rflA1jaOjeRg?pwd=w1n6"],
+	12:
+		["内存释放工具[Windows]",
+			"Windows环境下用于临时解决测试环境内存过高问题[生产环境慎用]",
+			"https://pan.baidu.com/s/1mB8LKryXmUeEh_y8ywsy_Q?pwd=krdt"],
+	13:
+		["文本分割切分程序[Windows]",
+			"常用于分割过大的日志文件",
+			"https://pan.baidu.com/s/1e13LoniwK3OT3OWXZ57yUw?pwd=bybu"],
+	14:
+		["数据库限制访问指定视图",
+			"SqlServer限制用户仅能访问指定视图",
+			"https://pan.baidu.com/s/10b_QRNwRQEayCFQ9brxvEQ?pwd=dv6l"],
+	15:
+		["DELLR730配置磁盘阵列raid10",
+			"DELLR730配置磁盘阵列raid10",
+			"https://pan.baidu.com/s/1-YDosKBCuI_Ye_N5f6bgng?pwd=0b6h"],
+	16:
+		["数据库更改1433默认端口",
+			"Sqlserver数据库更改1433默认端口",
+			"https://pan.baidu.com/s/1ZOXJPd7GlJwOxtKlGF5JhA?pwd=9okl"],
+	17:
+		["Mysql静默安装[批处理]",
+			"Mysql静默安装[批处理]",
+			""],
+	18:
+		["Sqlserver静默安装[PowerShell]",
+			"Sqlserver静默安装[PowerShell]",
+			""],
+	19:
+		["Centos7设置禁止ping",
+			"Centos7设置禁止ping",
+			"https://pan.baidu.com/s/1ZQ851qQv5QATCEcb6M5fzA?pwd=n8tu"],
+	20:
+		["",
 			"",
-			"https://www.baidu.com"]
+			""],
+	21:#示例格式
+		["",
+			"",
+			""]
 }

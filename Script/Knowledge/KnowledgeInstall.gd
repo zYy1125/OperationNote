@@ -108,8 +108,18 @@ func _ChioseKnowledgeNode(knowledgeNode):
 		"Prometheus":
 			pass
 		"RabbitMQ":
+			_initKnowledgeVBox(
+				allResources.ArrayKnowledgeRabbitMQResourcesTitle.size(),
+				allResources.ArrayKnowledgeRabbitMQResourcesTitle,
+				allResources.ArrayKnowledgeRabbitMQResourcesTitleText
+			)
 			pass
 		"RocketMQ":
+			_initKnowledgeVBox(
+				allResources.ArrayKnowledgeRocketMQResourcesTitle.size(),
+				allResources.ArrayKnowledgeRocketMQResourcesTitle,
+				allResources.ArrayKnowledgeRocketMQResourcesTitleText
+			)
 			pass
 		"Kafka":
 			_initKnowledgeVBox(

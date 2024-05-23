@@ -10,6 +10,9 @@ var operationNote
 # 文档节点
 var DocumentPanel = preload("res://Scene/DocumentPanel.tscn")
 var documentPanel
+# 关于节点
+var AboutPanel = preload("res://Scene/AboutPanel.tscn")
+var aboutPanel
 
 
 
@@ -27,6 +30,8 @@ func _on_ServiceBtn_pressed():
 	_disableListPanel()
 	# 激活文档页面节点
 	_enableListServicePanel()
+	# 设置图标
+	_setIconYellow(Vector2(0,0))
 	pass # Replace with function body.
 # 实例化服务节点
 func _initServiceNode():
@@ -40,6 +45,11 @@ func _showServiceNode():
 		pass
 	pass
 
+# 设置点击图标颜色
+func _setIconYellow(Pos):
+	$"OperationNoteKnowledgePanel/ListTitlePanel/Icon_Sqiu".visible = true
+	$"OperationNoteKnowledgePanel/ListTitlePanel/Icon_Sqiu".rect_position = Pos
+	pass
 
 # 打开文档页面
 func _on_DocumentBtn_pressed():
@@ -49,6 +59,8 @@ func _on_DocumentBtn_pressed():
 	_disableListPanel()
 	# 激活文档页面节点
 	_enableListDocumentPanel()
+	# 设置图标
+	_setIconYellow(Vector2(0,80))
 	pass # Replace with function body.
 # 实例化文档节点
 func _initDocumentNode():
@@ -70,10 +82,13 @@ func _disableListPanel():
 	$"OperationNoteKnowledgePanel/ListServicePanel".visible  = false
 	$"OperationNoteKnowledgePanel/ListDocumentPanel".visible  = false
 	$"OperationNoteKnowledgePanel/ListQuestionPanel".visible  = false
+	$"OperationNoteKnowledgePanel/ListAboutPanel".visible  = false
+	
 	# disable
 	$"OperationNoteKnowledgePanel/ListTitlePanel/ServiceBtn".disabled = true
 	$"OperationNoteKnowledgePanel/ListTitlePanel/DocumentBtn".disabled = true
 	$"OperationNoteKnowledgePanel/ListTitlePanel/QuestionBtn".disabled = true
+	$"OperationNoteKnowledgePanel/ListTitlePanel/AboutBtn".disabled = true
 	pass
 #激活页面节点
 func _enableServiceBtn():
@@ -88,6 +103,11 @@ func _enableQuestionBtn():
 	# enable
 	$"OperationNoteKnowledgePanel/ListTitlePanel/QuestionBtn".disabled = false
 	pass
+func _enableAboutBtn():
+	# enable
+	$"OperationNoteKnowledgePanel/ListTitlePanel/AboutBtn".disabled = false
+	pass
+	
 # 激活服务页面节点
 func _enableListServicePanel():
 	# 显示服务页面
@@ -95,9 +115,11 @@ func _enableListServicePanel():
 	# 激活其他按钮节点
 	_enableDocumentBtn()
 	_enableQuestionBtn()
+	_enableAboutBtn()
 	# 移除节点
 	_removeChilePanel($"OperationNoteKnowledgePanel/ListDocumentPanel")
 	_removeChilePanel($"OperationNoteKnowledgePanel/ListQuestionPanel")
+	_removeChilePanel($"OperationNoteKnowledgePanel/ListAboutPanel")
 	pass
 # 激活文档页面节点
 func _enableListDocumentPanel():
@@ -105,9 +127,11 @@ func _enableListDocumentPanel():
 	# 激活其他按钮节点
 	_enableServiceBtn()
 	_enableQuestionBtn()
+	_enableAboutBtn()
 	# 移除节点
 	_removeChilePanel($"OperationNoteKnowledgePanel/ListServicePanel")
 	_removeChilePanel($"OperationNoteKnowledgePanel/ListQuestionPanel")
+	_removeChilePanel($"OperationNoteKnowledgePanel/ListAboutPanel")
 	pass
 # 激活问题页面节点
 func _enableListQuestionPanel():
@@ -115,10 +139,25 @@ func _enableListQuestionPanel():
 	# 激活其他按钮节点
 	_enableServiceBtn()
 	_enableDocumentBtn()
+	_enableAboutBtn()
 	# 移除节点
 	# 移除节点
 	_removeChilePanel($"OperationNoteKnowledgePanel/ListServicePanel")
 	_removeChilePanel($"OperationNoteKnowledgePanel/ListDocumentPanel")
+	_removeChilePanel($"OperationNoteKnowledgePanel/ListAboutPanel")
+	pass
+# 激活关于页面节点
+func _enableListAboutPanel():
+	# 显示服务页面
+	$"OperationNoteKnowledgePanel/ListAboutPanel".visible  = true
+	# 激活其他按钮节点
+	_enableServiceBtn()
+	_enableDocumentBtn()
+	_enableQuestionBtn()
+	# 移除节点
+	_removeChilePanel($"OperationNoteKnowledgePanel/ListDocumentPanel")
+	_removeChilePanel($"OperationNoteKnowledgePanel/ListQuestionPanel")
+	_removeChilePanel($"OperationNoteKnowledgePanel/ListServicePanel")
 	pass
 # 切换页面Panel移除当前子节点
 func _removeChilePanel(PanelNode):
@@ -126,3 +165,41 @@ func _removeChilePanel(PanelNode):
 		PanelNode.get_child(0).queue_free()
 		pass
 	pass
+	
+# 问题页面
+func _on_QuestionBtn_pressed():
+	# 
+	_setIconYellow(Vector2(0,160))
+	pass # Replace with function body.
+	
+# 个人页面
+func _on_HomeBtn_pressed():
+	# 设置图标
+	_setIconYellow(Vector2(0,240))
+	pass # Replace with function body.
+	
+# 左侧按钮 - 关于页面
+func _on_AboutBtn_pressed():
+	# 节点激活
+	_showAboutNode()
+	# 关闭其他页面节点
+	_disableListPanel()
+	# 激活关于页面节点
+	_enableListAboutPanel()
+	# 设置图标
+	_setIconYellow(Vector2(0,320))
+	pass # Replace with function body.
+
+# 实例化服务节点
+func _initAboutNode():
+	aboutPanel = AboutPanel.instance()
+	$"OperationNoteKnowledgePanel/ListAboutPanel".add_child(aboutPanel)
+	pass
+func _showAboutNode():
+	if($"OperationNoteKnowledgePanel/ListTitlePanel/AboutBtn".disabled == false):
+		$"OperationNoteKnowledgePanel/ListTitlePanel/AboutBtn".disabled = true
+		_initAboutNode()
+		pass
+	pass
+
+
