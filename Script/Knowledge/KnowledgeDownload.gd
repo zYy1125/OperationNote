@@ -110,7 +110,9 @@ func _ChioseKnowledgeNode(knowledgeNode):
 		"RAID":
 			
 			pass
+		"Github":
 			
+			pass
 	pass
 
 # 加载当前知识点部署内容

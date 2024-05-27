@@ -141,6 +141,12 @@ func _ChioseKnowledgeNode(knowledgeNode):
 				allResources.ArrayKnowledgeLinuxInstructResourcesTitle,
 				allResources.ArrayKnowledgeLinuxInstructResourcesTitleText
 			)
+		"Github":
+			_initKnowledgeVBox(
+				allResources.ArrayKnowledgeGithubResourcesTitle.size(),
+				allResources.ArrayKnowledgeGithubResourcesTitle,
+				allResources.ArrayKnowledgeGithubResourcesTitleText
+			)
 			pass
 	pass
 

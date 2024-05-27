@@ -21,7 +21,7 @@ var ChioseDownloadUrl="http://www.baidu.com"
 var ArrayAllKnowledgeNodeResources = ["Linux",
 	"Jdk","Tomcat","Mysql","Oracle","Sqlserver","Nginx","Ceph","Docker",
 	"Ansible","Chrony","Elk","Hadoop","Ntpd","Kubernetes","Prometheus",
-	"RabbitMQ","RocketMQ","Kafka","CentosKernelUpdate","RAID"
+	"RabbitMQ","RocketMQ","Kafka","CentosKernelUpdate","RAID","Github"
 ]
 
 
@@ -52,7 +52,8 @@ var ArrayAllKnowledgeNodeInfoResources = {
 	"RocketMQ":["HelloRocketMQ\nRocketMQ是一款分布式、队列模型的消息中间件\n我们平时使用一些体育新闻软件,会订阅自己喜欢的一些球队板块,当有作者发表文章到相关的板块,我们就能收到相关的新闻推送.发布-订阅(Pub/Sub)是一种消息范式,消息的发送者(称为发布者、生产者、Producer)会将消息直接发送给特定的接收者(称为订阅者、消费者、Comsumer).而RocketMQ的基础消息模型就是一个简单的Pub/Sub模型."],
 	"Kafka":["HelloKafka\nKafka是由Apache软件基金会开发的一个开源流处理平台,由Scala和Java编写.Kafka是一种高吞吐量的分布式发布订阅消息系统,它可以处理消费者在网站中的所有动作流数据.这种动作（网页浏览,搜索和其他用户的行动）是在现代网络上的许多社会功能的一个关键因素.这些数据通常是由于吞吐量的要求而通过处理日志和日志聚合来解决.对于像Hadoop一样的日志数据和离线分析系统,但又要求实时处理的限制,这是一个可行的解决方案.Kafka的目的是通过Hadoop的并行加载机制来统一线上和离线的消息处理,也是为了通过集群来提供实时的消息."],
 	"CentosKernelUpdate":["CentOS升级版本及内核"],
-	"RAID":["RAID"]
+	"RAID":["RAID"],
+	"Github":["Github"]
 	}
 
 
@@ -68,7 +69,8 @@ var ArrayKnowledgeInstructResources = {
 	"Sqlserver":["44444"],
 	"Nginx":["55555"],
 	"CentosKernelUpdate":["55555"],
-	"RAID":["RAID"]
+	"RAID":["RAID"],
+	"Github":["Github"]
 }
 
 ###########
@@ -324,26 +326,34 @@ var ArrayKnowledgeNGINXDownloadResourcesTitleText = [
 #############
 # 知识节点对应的数据 - Ceph|Key
 var ArrayKnowledgeCephResourcesTitle = [
-	"[服务器准备工作]",
-	"1、基础配置[*]",
-	"2、安装时间同步服务[*]",
-	"3、虚拟机模拟现场环境添加硬盘/虚拟机将自动重启/物理机需手动重启[*]",
+	"0、集群基础架构",
+	"1、基本环境配置",
+	"2、安装支持依赖服务",
+	"3、手动添加硬盘/虚拟机将自动重启/物理机需手动重启[*]",
 	"4、验证[*]",
-	"5、安装ceph服务[*]",
-	"6、创建文件系统[*]",
-	"7、挂载ceph集群存储",
+	"",
+	"5、安装ceph服务",
+	"6、创建文件系统",
+	"7.1、挂载ceph文件存储",
+	"7.2、挂载ceph块存储",
+	"#温馨提示:",
+	"#参考文档:",
 	""
 ]
 # 知识节点对应的数据 - Ceph|Value
 var ArrayKnowledgeCephResourcesTitleText = [
-	"-------------------------------\n192.168.1.100 Cephmaster\n192.168.1.101 Ceph01\n192.168.1.102 Ceph02\n-------------------------------\n192.168.1.200 挂载测试节点\n-------------------------------",
-	"#修改主机名\n[root@* ~]hostnamectl set-hostname cephmaster\n[root@* ~]hostnamectl set-hostname ceph01\n[root@* ~]hostnamectl set-hostname ceph02\n#主机名绑定ip\n[root@* ~]vim /etc/hosts\n#192.168.1.100 cephmaster\n#192.168.1.100 ceph01\n#192.168.1.100 ceph02\n#关闭防火墙和selinux策略\n[root@* ~]vim /etc/selinux/config\n#enforcing替换成disabled\n#setenforce 0\n#创建cephuser用户\n[root@* ~]useradd -d /home/cephuser -m cephuser\n[root@* ~]echo \"cephuser\"|passwd --stdin cephuser\n[root@* ~]echo \"cephuser ALL = (root) NOPASSWD:ALL\" | sudo tee /etc/sudoers.d/cephuser\n[root@* ~]chmod 0440 /etc/sudoers.d/cephuser\n[root@* ~]sed -i s'/Defaults requiretty/#Defaults requiretty'/g /etc/sudoers\n#配置源\n[root@* ~]yum clean all\n[root@* ~]mkdir /mnt/bak\n[root@* ~]mv /etc/yum.repos.d/* /mnt/bak/\n[root@* ~]wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo\n[root@* ~]wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo\n#手动添加文件\n#配置ceph.repo源：参考下层级的配置文件：ceph.repo\n#配置epel.repo源：参考下层级的配置文件：epel.repo",
-	"#安装时间同步服务\n[root@* ~]yum install ntp ntpdate ntp-doc -y\n#参考ntp配置\n#配置设备免密互通服务ssh  [cephmaster]\n[root@* ~]su - cephuser\n[root@* ~]ssh-keygen -t rsa#[一路回车]\n[root@* ~]cd .ssh/\n[root@* ~]cp id_rsa.pub authorized_keys\n[root@* ~]scp -r /home/cephuser/.ssh ceph01:/home/cephuser/\n[root@* ~]scp -r /home/cephuser/.ssh ceph02:/home/cephuser/\n",
-	"#格式化磁盘\n[root@* ~]parted -s /dev/sdb mklabel gpt mkpart primary xfs 0% 100%\n[root@* ~]mkfs.xfs /dev/sdb -f\n#验证格式\n[root@* ~]blkid -o value -s TYPE /dev/sdb",
-	"#验证防火墙\n[root@* ~]systemctl stop firewalld.service\n[root@* ~]systemctl disable firewalld.service\n#验证selinux\n[root@* ~]setenforce 0\n#验证ssh\n[root@* ~]ssh -p22 cephuser@cephmaster\n[root@* ~]ssh -p22 cephuser@ceph01\n[root@* ~]ssh -p22 cephuser@ceph02\n#验证主机名\n[root@* ~]hostname",
-	"#安装ceph*[三台设备]\n[root@* ~]sudo yum update -y\n[root@* ~]sudo yum install yum-plugin-priorities -y\n[root@* ~]yum install epel-release -y\n#将rpm包传入每台设备使用命令安装即可\n[root@* ~]yum localinstall *.rpm\n[root@* ~]sudo yum install ceph-deploy -y#[cephmaster]\n[root@* ~]ceph-deploy install no-adjust-repo ceph01 ceph02 ceph03#[加上参数即可使用deploy安装]\n#生成ceph.conf相关信息\n[root@* ~]su - cephuser\n[root@* ~]mkdir cluster\n[root@* ~]cd cluster\n[root@* ~]ceph-deploy new cephmaster#[创建集群]\n#配置ceph参数：参考下层级的配置文件：ceph.conf\n#安装ceph-monit主控节点\n[root@* ~]ceph-deploy mon create-initial#[初始化]\n[root@* ~]ceph-deploy gatherkeys cephmaster\n#开始集群 osd[rbd模式跳过]\n#检查OSD节点上所有可用的磁盘\n[root@* ~]ceph-deploy disk list ceph01 ceph02\n#使用zap选项删除所有osd节点上的分区\n[root@* ~]ceph-deploy disk zap ceph01:/dev/sdb ceph02:/dev/sdb\n#准备OSD(使用prepare命令)\n[root@* ~]ceph-deploy osd prepare ceph01:/dev/sdb ceph02:/dev/sdb\n#激活OSD(注意由于ceph对磁盘进行了分区，/dev/sdb磁盘分区为/dev/sdb1)\n[root@* ~]ceph-deploy osd activate ceph01:/dev/sdb1 ceph02:/dev/sdb1\n#验证osd集群后节点分区\n[root@* ~]lsblk\n#查看OSD[rbd模式跳过]\n[root@* ~]ceph-deploy disk list ceph01 ceph02\n#用ceph-deploy把配置文件和admin密钥拷贝到管理节点和Ceph节点，这样你每次执行Ceph命令行时就无需指定monit节点地址\n[root@* ~]ceph-deploy admin cephmaster ceph01 ceph02\n#修改密钥权限\n[root@* ~]sudo chmod 644 /etc/ceph/ceph.client.admin.keyring\n[root@* ~]ceph config set mon auth_allow_insecure_global_id_reclaim false#[禁用不安全模式]\n#检查ceph状态\n[root@* ~]sudo ceph health\n[root@* ~]sudo ceph -s\n[root@* ~]sudo ceph osd stat\n[root@* ~]sudo ceph osd tree\n",
-	"#查看管理节点状态[rbd模式跳过]\n[root@* ~]ceph mds stat\n#创建节点\n#创建mds节点[rbd模式跳过][cephfs模式执行]\n[root@* ~]cd cluster/\n[root@* ~]ceph-deploy mds create ceph-master\n[root@* ~]ceph mds stat\n#创建mgr节点\n[root@* ~]ceph-deploy mgr create cephmaster\n#创建osd、pool，pool是ceph存储数据时的逻辑分区,它起到namespace的作用\n#创建osd节点[rbd模式执行]\n[root@* ~]ceph-deploy osd create cephmaster --data /dev/sdb\n[root@* ~]ceph-deploy osd create ceph01 --data /dev/sdb\n[root@* ~]ceph-deploy osd create ceph02 --data /dev/sdb\n#创建osd以及poll  [cephfs模式执行 rbd模式跳过]\n[root@* ~]ceph osd lspools[root@* ~]#查看pool状态\n[root@* ~]ceph osd pool create cephfs_data 10\n[root@* ~]ceph osd pool create cephfs_metadata 10\n[root@* ~]ceph fs new myceph cephfs_metadata cephfs_data\n[root@* ~]ceph osd lspools[root@* ~]#查看pool状态\n#检查mds管理节点状态\n[root@* ~]ceph mds stat[root@* ~]#检查mds管理节点状态\n[root@* ~]sudo ceph -s[root@* ~]#查看ceph集群状态\n[root@* ~]sudo lsof -i:6789#查看ceph集群端口\n[root@* ~][cephfs模式到此截至执行集群创建 跳转至\"挂载ceph集群存储\"]\n#创建mon、mgr集群高可用\n[root@* ~]ceph-deploy mon add ceph01 --address 192.168.1.101#[添加mon节点01]\n[root@* ~]ceph-deploy mon add ceph01 --address 192.168.1.102#[添加mon节点01]\n[root@* ~]ceph quorum_status --format json-pretty#[查看节点高可用json格式信息]\n[root@* ~]ceph mon dump#[查看mon详细信息]\n[root@* ~]ceph-deploy mgr create ceph01 ceph02#[创建mgr高可用节点]\n#创建rbd模式的资源池\n[root@* ~]ceph osd pool create ceph-demo 64 64#[创建pg64 pgp64名字叫ceph-demo的pools资源池]\n[root@* ~]ceph osd pool get ceph-demo pg_num#[查看pg个数]\n[root@* ~]ceph osd pool get ceph-demo pgp_num#[查看pgp个数]\n[root@* ~]ceph osd pool get ceph-demo size#[查看pool中osd的个数]\n[root@* ~]ceph osd pool get ceph-demo crush_rule#[查看算法 ]\n#[更改为写入2个osd副本]\n[root@* ~]ceph osd pool set ceph-demo size 2\n#[pg容量不够,扩容pg,pgp]\n[root@* ~]ceph osd pool set ceph-demo pg_num 128\n[root@* ~]ceph osd pool set ceph-demo pgp_num 128",
-	"#fuse[192.168.1.200挂载集群节点][文件存储]\n#配置源#配置base/epel源\n[root@* ~]wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo\n[root@* ~]wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo\n#配置ceph.repo源：参考下层级的配置文件：ceph.repo\n#配置epel.repo源：参考下层级的配置文件：epel.repo\n#安装依赖[root@* ~]sudo yum update -y && sudo yum install ceph* -y[root@* ~]sudo yum install yum-plugin-priorities -y[root@* ~]yum install -y ceph-fuse\n#创建挂载目录[root@* ~]mkdir /cephfs\n#将主控节点复制配置文件至当前环境[root@* ~]rsync -e \"ssh -p22\" -avpgolr root@192.168.1.100:/etc/ceph/ceph.conf /etc/ceph/[root@* ~]rsync -e \"ssh -p22\" -avpgolr root@192.168.1.100:/etc/ceph/ceph.client.admin.keyring /etc/ceph/\n#查看ceph授权\n[root@* ~]ceph auth list\n#将ceph集群存储挂载至当前环境的/cephfs目录\n[root@* ~]ceph-fuse -m 192.168.1.100:6789 /cephfs\n[root@* ~]vim /etc/fstab\n[root@* ~]#conf=/etc/ceph/cluster.conf  /cephfs  fuse.ceph defaults,netdev 0 0\n#验证\n[root@* ~]df -H\n[root@* ~]mkdir -p /cephfs/Soft\n#kernel+rbd [块存储]\n#[块设备可以直接通过rbd指定pool资源池进行块存储空间的拉取 形成一个虚拟磁盘挂载]\n#[考虑到扩容问题 不建议分区,格式化即可]\n#创建rbd：\n[root@* ~]rbd create -p ceph-demo --image rbd-demo.img --size 25G#[创建rbd]/[主机扩容至上限]\n[root@* ~]rbd -p ceph-demo ls [查看rbd]\n[root@* ~]rbd info ceph-demo/rbd-demo.img#[查看rbd详细信息]\n#禁止当前环境不支持的特性\n[root@* ~]rbd feature disable ceph-demo/rbd-demo.img deep-flatten\n[root@* ~]rbd feature disable ceph-demo/rbd-demo.img fast-diff\n[root@* ~]rbd feature disable ceph-demo/rbd-demo.img object-map\n[root@* ~]rbd feature disable ceph-demo/rbd-demo.img exclusive-lock\n[root@* ~]vim /etc/ceph/ceph.conf\n[root@* ~] ->rbd_default_features =1#设置默认为layering\n[root@* ~]sudo rbd map ceph-demo/rbd-demo.img#[rbd通过map方式创建rbd][必须以root身份执行]\n[root@* ~]rbd device list#[查看块设备信息 以及 挂载]\n[root@* ~]sudo mkfs.xfs /dev/rbd0#[格式化]\n[root@* ~]mkdir /mnt/rbd-demo   [创建磁盘所在目录]\n[root@* ~]mount /dev/rbd0 /mnt/rbd-demo/#[挂载磁盘 建立目录和磁盘联系]\n[root@* ~]df -H   /\n[root@* ~]lsblk#[查看磁盘以及挂载信息][/dev/sdb磁盘并没有挂载 但是数据存储到rbd块设备所在的目录,实际还是存储在各个节点的pools池]\n#扩容 [resize] 缩容[--allow-shrink]\n[root@* ~][查看块对应的img信息]\n[root@* ~]rbd -p ceph-demo info --image rbd-demo.img\n[root@* ~][扩大rbd设备的img为30G][不是增加30G是上限为30G]\n[root@* ~][磁盘以及块设备扩容成功][文件系统挂载目录为改变]\n[root@* ~]rbd resize ceph-demo/rbd-demo.img --size 30G#[磁盘/块设备扩容]\n[root@* ~]xfs_growfs /dev/rbd0#[文件系统扩容]\n#扩展\n[root@* ~]rados -p ceph-demo ls | grep rbd_data.*****#查看object信息\n[root@* ~]rados -p ceph-demo ls | grep rbd_data.*****#查看object个数\n[root@* ~]rados -p ceph-demo ls | grep rbd_data.*****#[4M每个  查看分配空间实际量]\n#快照恢复\n#垃圾箱",
+	"|----------------|\n|192.168.1.6 master |\n|192.168.1.7 ceph01|\n|192.168.1.8 ceph02|\n|----------------|",
+	"1.0、自行配置网络环境[网卡:ifcfg-ens33]\n	[root@cephmaster ~]# vim /etc/sysconfig/network-scripts/ifcfg-ens33\n1.1、修改主机名[*]\n    [root@cephmaster ~]# hostnamectl set-hostname cephmaster\n    [root@cephmaster ~]# hostnamectl set-hostname ceph01\n    [root@cephmaster ~]# hostnamectl set-hostname ceph02\n1.2、主机名绑定ip[*]\n	[root@cephmaster ~]# cat <<EOF >> /etc/hosts\n192.168.2.6 cephmaster\n192.168.2.7 ceph01\n192.168.2.8 ceph02\nEOF\n1.3、关闭防火墙和selinux策略[*]\n    [root@cephmaster ~]# setenforce 0 &&  sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config\n1.4、创建cephuser用户[*]\n    [root@cephmaster ~]# useradd -d /home/cephuser -m cephuser\n    [root@cephmaster ~]# echo \"cephuser\"|passwd --stdin cephuser\n    [root@cephmaster ~]# echo \"cephuser ALL = (root) NOPASSWD:ALL\" | sudo tee /etc/sudoers.d/cephuser\n    [root@cephmaster ~]# chmod 0440 /etc/sudoers.d/cephuser\n    [root@cephmaster ~]# sed -i s'/Defaults requiretty/#Defaults requiretty'/g /etc/sudoers\n1.5、配置源[*]\n    #配置base/epel源\n    [root@cephmaster ~]# yum clean all\n    [root@cephmaster ~]# mkdir /mnt/bak\n    [root@cephmaster ~]# mv /etc/yum.repos.d/* /mnt/bak/\n    [root@cephmaster ~]# wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo\n    [root@cephmaster ~]# wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo\n    [root@cephmaster ~]# cd /etc/yum.repos.d/\n    [root@cephmaster ~]# vim ceph.repo\n    [root@cephmaster ~]# vim epel.repo\n    #配置ceph.repo源：参考配置文件：ceph.repo\n    #配置epel.repo源：参考配置文件：epel.repo",
+	"2.1、安装时间同步服务[*]\n	#参考chrony部署\n2.2、配置设备免密互通服务ssh[master安装]\n    [root@cephmaster ~]# su - cephuser\n    [cephuser@cephmaster ~]# ssh-keygen -t rsa #[一路回车]\n    [cephuser@cephmaster ~]# cd .ssh/\n    [cephuser@cephmaster ~]# cp id_rsa.pub authorized_keys\n    [cephuser@cephmaster ~]# scp -r /home/cephuser/.ssh ceph01:/home/cephuser/\n    [cephuser@cephmaster ~]# scp -r /home/cephuser/.ssh ceph02:/home/cephuser/",
+	"#格式化磁盘\n[root@cephmaster ~]# fdisk -l #查看添加的硬盘\n[root@cephmaster ~]# parted -s /dev/sdb mklabel gpt mkpart primary xfs 0% 100%\n[root@cephmaster ~]# mkfs.xfs /dev/sdb -f\n#验证格式\n[root@cephmaster ~]# blkid -o value -s TYPE /dev/sdb\n# 问题:是否需要将添加的硬盘加入/etc/fstab加载\n# 注意:/dev/sdb不一定一模一样,可能标识符不一致,需要判断你添加的硬盘实际参数",
+	"4.1、验证防火墙\n	[root@cephmaster ~]# systemctl stop firewalld.service && systemctl disable firewalld.service\n4.2、验证selinux\n	[root@cephmaster ~]# setenforce 0\n4.3、验证ssh\n	[root@cephmaster ~]# ssh -p22 cephuser@cephmaster\n	[root@cephmaster ~]# ssh -p22 cephuser@ceph01\n	[root@cephmaster ~]# ssh -p22 cephuser@ceph02\n4.4、验证时间同步\n	[root@cephmaster ~]# chronyc sources -v\n4.5、验证主机名\n	[root@cephmaster ~]# hostname",
+	"--------------------------------------------------------\n| ---------------- 正式开始进行ceph相关部署 ---------------- |\n--------------------------------------------------------",
+	"5.1、安装ceph*[*]\n	# 如全程离线,需通过前置机基于公网环境下依赖包yumdownload传到内网安装\n	[root@cephmaster ~]# sudo yum update -y\n	[root@cephmaster ~]# sudo yum install yum-plugin-priorities -y\n	[root@cephmaster ~]# yum install epel-release -y\n	#此处提供二种安装方式： 1、yum install ceph* -y[不建议,国内是违法行为] 2、使用作者提供的离线包yum*[不要相互使用！会造成依赖包版本不同冲突]\n	[root@cephmaster ~]# yum localinstall *.rpm -y\n	[root@cephmaster ~]# sudo yum install ceph-deploy -y         #[cephmaster设备单独执行]\n	# ceph-deploy install cephmaster ceph01 ceph02   			 #[这句话千万不要执行!!!]\n	[root@cephmaster ~]# cat <<EOF >> /etc/sudoers\nabc ALL = NOPASSWD: ALL\nEOF\n	[root@cephmaster ~]# ceph-deploy install cephmaster ceph01 ceph02 --no-adjust-repos #[cephmaster单独执行][执行过程可能会提示输入服务器账号密码]\n5.2、生成ceph.conf相关信息\n	[root@cephmaster ~]# su - cephuser\n	[root@cephmaster ~]# mkdir cluster\n	[root@cephmaster ~]# cd cluster\n	[root@cephmaster ~]# ceph-deploy new cephmaster #[创建集群]\n	#[双层网络使用后面一种方式创建][ceph-deploy new --public-network 10.211.55.0/24 --cluster-network 10.211.56.0/24]\n5.3、配置ceph参数：参考配置文件：ceph.conf\n5.4、安装ceph-monit主控节点\n	[root@cephmaster ~]# ceph-deploy mon create-initial\n	[root@cephmaster ~]# ceph-deploy gatherkeys cephmaster\n5.5、开始集群 osd     [rbd模式跳过]\n	#检查OSD节点上所有可用的磁盘\n	[root@cephmaster ~]# ceph-deploy disk list ceph01 ceph02\n	#使用zap选项删除所有osd节点上的分区\n	[root@cephmaster ~]# ceph-deploy disk zap ceph01:/dev/sdb ceph02:/dev/sdb\n	#准备OSD(使用prepare命令)\n	[root@cephmaster ~]# ceph-deploy osd prepare ceph01:/dev/sdb ceph02:/dev/sdb\n	#激活OSD(注意由于ceph对磁盘进行了分区，/dev/sdb磁盘分区为/dev/sdb1)\n	[root@cephmaster ~]# ceph-deploy osd activate ceph01:/dev/sdb1 ceph02:/dev/sdb1\n5.6、验证osd集群后节点分区\n	[root@cephmaster ~]# lsblk\n5.7、查看OSD    [rbd模式跳过]\n	[root@cephmaster ~]# ceph-deploy disk list ceph01 ceph02\n5.8、用ceph-deploy把配置文件和admin密钥拷贝到管理节点和Ceph节点，这样你每次执行Ceph命令行时就无需指定monit节点地址\n	[root@cephmaster ~]# ceph-deploy admin cephmaster ceph01 ceph02\n5.9、修改密钥权限\n	[root@cephmaster ~]# sudo chmod 644 /etc/ceph/ceph.client.admin.keyring\n	[root@cephmaster ~]# ceph config set mon auth_allow_insecure_global_id_reclaim false   #[禁用不安全模式][报错无视即可]\n5.10、检查ceph状态\n	[root@cephmaster ~]# sudo ceph health\n	[root@cephmaster ~]# sudo ceph -s\n	[root@cephmaster ~]# sudo ceph osd stat\n	[root@cephmaster ~]# sudo ceph osd tree",
+	"6.1、查看管理节点状态	[rbd模式跳过]\n		[root@cephmaster ~]# ceph mds stat\n6.2、创建节点\n	6.2.1、创建mds节点	[rbd模式跳过][cephfs模式执行]\n		[root@cephmaster ~]# cd cluster/\n		[root@cephmaster ~]# ceph-deploy mds create ceph-master\n		[root@cephmaster ~]# ceph mds stat\n    6.2.2、创建mgr节点\n		[root@cephmaster ~]# ceph-deploy mgr create cephmaster\n6.3、创建osd、pool，pool是ceph存储数据时的逻辑分区,它起到namespace的作用\n	6.3.1 创建osd节点	[rbd模式执行]\n		[root@cephmaster ~]# ceph-deploy osd create cephmaster --data /dev/sdb\n		[root@cephmaster ~]# ceph-deploy osd create ceph01 --data /dev/sdb\n		[root@cephmaster ~]# ceph-deploy osd create ceph02 --data /dev/sdb\n    6.3.2 创建osd以及poll  [rbd模式跳过][cephfs模式执行]\n		[root@cephmaster ~]# ceph osd lspools             #查看pool状态\n		[root@cephmaster ~]# ceph osd pool create cephfs_data 10\n		[root@cephmaster ~]# ceph osd pool create cephfs_metadata 10\n		[root@cephmaster ~]# ceph fs new myceph cephfs_metadata cephfs_data\n		[root@cephmaster ~]# ceph osd lspools             #查看pool状态\n6.4、检查mds管理节点状态\n		[root@cephmaster ~]# ceph mds stat	#检查mds管理节点状态\n		[root@cephmaster ~]# sudo ceph -s	#查看ceph集群状态\n		[root@cephmaster ~]# sudo lsof -i:6789	#查看ceph集群端口\n6.5、创建mon、mgr集群高可用\n		[root@cephmaster ~]# ceph-deploy mon add ceph01 --address 192.168.1.101	#[添加mon节点01][IP根据节点更改]\n		[root@cephmaster ~]# ceph-deploy mon add ceph01 --address 192.168.1.102	#[添加mon节点02][IP根据节点更改]\n		[root@cephmaster ~]# ceph quorum_status --format json-pretty	#[查看节点高可用json格式信息]\n		[root@cephmaster ~]# ceph mon dump	#[查看mon详细信息]\n		[root@cephmaster ~]# ceph-deploy mgr create ceph01 ceph02	#[创建mgr高可用节点]\n6.6、创建rbd模式的资源池	[rbd模式执行]\n		[root@cephmaster ~]# ceph osd pool create ceph-demo 64 64     #[创建pg64 pgp64名字叫ceph-demo的pools资源池]\n		[root@cephmaster ~]# ceph osd pool get ceph-demo pg_num       #[查看pg个数]\n		[root@cephmaster ~]# ceph osd pool get ceph-demo pgp_num      #[查看pgp个数]\n		[root@cephmaster ~]# ceph osd pool get ceph-demo size         #[查看pool中osd的个数]\n		[root@cephmaster ~]# ceph osd pool get ceph-demo crush_rule   #[查看算法 ]\n\n		#扩展-参考：\n		#[更改为写入2个osd副本]\n		#[root@cephmaster ~]# ceph osd pool set ceph-demo size 2\n		#[pg容量不够,扩容pg,pgp]\n		#[root@cephmaster ~]# ceph osd pool set ceph-demo pg_num 128\n		#[root@cephmaster ~]# ceph osd pool set ceph-demo pgp_num 128",
+	"7.1、fuse   [192.168.1.200挂载集群节点][文件存储特供]\n	7.1.1、配置源\n		#配置base/epel源\n		[root@cephmaster ~]# wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo\n		[root@cephmaster ~]# wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo\n		#配置ceph.repo源：参考下层级的配置文件：ceph.repo\n		#配置epel.repo源：参考下层级的配置文件：epel.repo\n    7.1.2、安装依赖\n		[root@cephmaster ~]# sudo yum update -y && sudo yum install ceph* -y\n		[root@cephmaster ~]# sudo yum install yum-plugin-priorities -y\n		[root@cephmaster ~]# yum install -y ceph-fuse\n	7.1.3、创建挂载目录\n		[root@cephmaster ~]# mkdir /cephfs\n	7.1.4、将主控节点复制配置文件至当前环境\n		[root@cephmaster ~]# rsync -e \"ssh -p22\" -avpgolr root@192.168.1.100:/etc/ceph/ceph.conf /etc/ceph/\n		[root@cephmaster ~]# rsync -e \"ssh -p22\" -avpgolr root@192.168.1.100:/etc/ceph/ceph.client.admin.keyring /etc/ceph/\n	7.1.5、查看ceph授权\n			[root@cephmaster ~]# ceph auth list\n	7.1.6、将ceph集群存储挂载至当前环境的/cephfs目录\n		[root@cephmaster ~]# ceph-fuse -m 192.168.1.100:6789 /cephfs\n		[root@cephmaster ~]# vim /etc/fstab\n		#conf=/etc/ceph/cluster.conf  /cephfs  fuse.ceph defaults,netdev 0 0\n	7.1.7、验证\n		[root@cephmaster ~]# df -H\n		[root@cephmaster ~]# mkdir -p /cephfs/Soft",
+	"7.2、kernel+rbd [块存储特供]\n		#[块设备可以直接通过rbd指定pool资源池进行块存储空间的拉取 形成一个虚拟磁盘挂载]\n		#[考虑到扩容问题 不建议分区,格式化即可]\n	7.2.1、创建rbd：\n		[root@cephmaster ~]# rbd create -p ceph-demo --image rbd-demo.img --size 25G	#[创建rbd]/[主机扩容至上限]\n		[root@cephmaster ~]# rbd -p ceph-demo ls 										#[查看rbd]\n		[root@cephmaster ~]# rbd info ceph-demo/rbd-demo.img  							#[查看rbd详细信息]\n	7.2.3、禁止当前环境不支持的特性\n		[root@cephmaster ~]# rbd feature disable ceph-demo/rbd-demo.img deep-flatten\n		[root@cephmaster ~]# rbd feature disable ceph-demo/rbd-demo.img fast-diff\n		[root@cephmaster ~]# rbd feature disable ceph-demo/rbd-demo.img object-map\n		[root@cephmaster ~]# rbd feature disable ceph-demo/rbd-demo.img exclusive-lock\n		[root@cephmaster ~]# sudo vim /etc/ceph/ceph.conf\n		#->rbd_default_features =1   #设置默认为layering\n		[root@cephmaster ~]# sudo rbd map ceph-demo/rbd-demo.img    #[rbd通过map方式创建rbd][必须以root身份执行]\n		[root@cephmaster ~]# rbd device list   						#[查看块设备信息 以及 挂载]\n		[root@cephmaster ~]# sudo mkfs.xfs /dev/rbd0        		#[格式化]\n		[root@cephmaster ~]# sudo mkdir /mnt/rbd-demo   			#[创建本地磁盘所在目录]\n		[root@cephmaster ~]# sudo mount /dev/rbd0 /mnt/rbd-demo/    #[挂载磁盘 建立目录和磁盘联系]\n		[root@cephmaster ~]# df -H\n		[root@cephmaster ~]# lsblk  #[查看磁盘以及挂载信息][/dev/sdb磁盘并没有挂载 但是数据存储到rbd块设备所在的目录,实际还是存储在各个节点的pools池]\n	7.2.4、扩容 [resize] 缩容[--allow-shrink]\n		#[查看块对应的img信息]\n		[root@cephmaster ~]# rbd -p ceph-demo info --image rbd-demo.img\n		#[扩大rbd设备的img为30G][不是增加30G是上限为30G]\n		#[磁盘以及块设备扩容成功][文件系统挂载目录为改变]\n		[root@cephmaster ~]# rbd resize ceph-demo/rbd-demo.img --size 30G	#[磁盘/块设备扩容]\n		[root@cephmaster ~]# xfs_growfs /dev/rbd0          [文件系统扩容]\n	7.2.5、扩展\n		[root@cephmaster ~]# rados -p ceph-demo ls | grep rbd_data.*****    #查看object信息\n		[root@cephmaster ~]# rados -p ceph-demo ls | grep rbd_data.*****    #查看object个数\n		[root@cephmaster ~]# rados -p ceph-demo ls | grep rbd_data.*****    #[4M每个  查看分配空间实际量]\n	7.2.6、快照恢复\n	7.2.7、垃圾箱",
+	"#当有一半以上的OSD节点挂掉后,远程客户端挂载的Ceph存储就会使用异常了,即暂停使用;比如本案例中有3个OSD节点,当其中一个OSD节点挂掉后(比如宕机),\n#客户端挂载的Ceph存储使用正常；但当有2个OSD节点挂掉后,客户端挂载的Ceph存储就不能正常使用了(表现为Ceph存储目录下的数据读写操作一直卡着状态),\n#当OSD节点恢复后,Ceph存储也会恢复正常使用;OSD节点宕机重新启动后,osd程序会自动起来(通过监控节点自动起来)",
+	"https://www.cnblogs.com/kevingrace/category/1129278.html			#ceph集群部署--本文资料也是根据此文章进行测试\nhttps://www.bilibili.com/video/BV1ug4y187S9?p=22					#ceph-集群-rbd模块参照视频部署 \nhttps://blog.csdn.net/aixiaoyang168/article/details/78825850		#rbd报错参考\nhttps://blog.csdn.net/aixiaoyang168/article/details/78825850\nhttps://blog.csdn.net/weixin_39808143/article/details/116968819		#ceph-ntpd服务时间同步导致报错1\nhttps://blog.csdn.net/weixin_33786077/article/details/93025119		#ceph-ntpd服务时间同步导致报错2\nhttps://blog.csdn.net/qq_40017427/article/details/107533888			#ceph集群报错参考\nhttps://blog.csdn.net/qq_34777982/article/details/119464854?ivk_sa=1024320u  #部署方式\nhttps://www.cnblogs.com/weifeng1463/p/12819308.html  				#yum离线包的拉取\nhttps://www.it610.com/article/3376782.htmwget						#能拉取信息,yum超时的解决办法\nhttps://www.cnblogs.com/kevingrace/category/925329.html  			#drbd另外一种分布式存储\nhttp://docs.ceph.org.cn/cephfs/fstab/#fuse							#ceph官方文档\nhttp://eu.ceph.com/rpm-jewel/el7/x86_64/\nhttp://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/l/",
 	""
 ]
 
@@ -634,6 +644,43 @@ var ArrayKnowledgeCentosKernelResourcesTitleText = [
 
 
 
+# 资源下载地址 - Github|Value
+var ArrayKnowledgeGithubResourcesTitle = [
+	"---------------------首次使用Github----------------------",
+	"# 1、在官网注册github账号,下载客户端",
+	"# 2、添加ssl",
+	"# 3、打开命令行Open Git Bash Here - 初始化添加用户",
+	"# 4、删除.git文件",
+	"# 5、拉取Github的新建项目Url",
+	"# 6、将需要上传的文件复制到.git同级目录",
+	"# 7、上传",
+	"# 8、提交",
+	"# 9、推送至Github",
+	"---------------------使用Github更新----------------------",
+	"# 更新代码[仅限代码在.git目录开发,否则需要执行第6步]",
+	"# 上传代码",
+	""
+]
+var ArrayKnowledgeGithubResourcesTitleText = [
+	"",
+	"#https://github.com/\n#https://gitforwindows.org/\n#Git-2.45.0-64-bit文件",
+	"#在Windows系统右键 -> Open Git Bash here命令行\n$ssh-keygen -t rsa -C '你的Github邮箱'\n# 本地生成后在C盘用户下找到字符串{C:\\Users\\Administrator\\.ssh}\n# github添加ssl\n#进入你的账号主页\n#右上角头像选择 - Settings\n#左侧列表选择 - SSH and GPG keys - New SSH keys - 填入C:\\Users\\Administrator\\.ssh内容即可",
+	"$git config --global user.name \"github用户名\"\n$git config --global user.email \"Github邮箱\"\n$git init\n$git remote add origin git@github.com:用户名/项目名称.git",
+	"删除.git文件",
+	"$git clone '项目Url'",
+	"$cd .git同级目录\nCtrl + c | Ctrl + V",
+	"$git add -A",
+	"$git commit -m \"你想提交的记录点字符串\"",
+	"$git push -u origin main",
+	"",
+	"$git pull 你的项目地址",
+	"重复步骤789",
+	""
+]
+
+
+
+
 # Linux常用命令 - LinuxInstruct|Value
 var ArrayKnowledgeLinuxInstructResourcesTitle = [
 	"ls",
@@ -805,9 +852,9 @@ var ArrayAllDocumentDownloadPanelResources = {
 			"Centos7设置禁止ping",
 			"https://pan.baidu.com/s/1ZQ851qQv5QATCEcb6M5fzA?pwd=n8tu"],
 	20:
-		["",
-			"",
-			""],
+		["Centos7重新设置密码",
+			"常用于Centos7忘记密码重新设置",
+			"https://pan.baidu.com/s/1OhUtqY9rtFw1M4pZ7F8p1g?pwd=z3je"],
 	21:#示例格式
 		["",
 			"",

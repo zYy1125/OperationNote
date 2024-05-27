@@ -169,6 +169,9 @@ func _on_KnowledgeNode_input(event,body_item):
 			"Linux":
 				_chioseKnowledgeKey("Linux")
 				pass
+			"Github":
+				_chioseKnowledgeKey("Github")
+				pass
 		pass
 	pass
 
