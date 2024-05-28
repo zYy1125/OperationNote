@@ -97,7 +97,9 @@ custom_styles/normal = SubResource( 9 )
 custom_styles/completion = SubResource( 9 )
 readonly = true
 syntax_highlighting = true
+highlight_all_occurrences = true
 override_selected_font_color = true
+wrap_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -357,6 +357,15 @@ var ArrayKnowledgeCephResourcesTitleText = [
 	""
 ]
 
+var ArrayKnowledgeCephDownloadResourcesTitle = [
+	"Ceph部署资源文件",
+	""
+]
+var ArrayKnowledgeCephDownloadResourcesTitleText = [
+	"https://pan.baidu.com/s/10_j5Dj7X-Ip77r8ht_epjA?pwd=spvl",
+	""
+]
+
 #############
 #   Docker  #
 #############

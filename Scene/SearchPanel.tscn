@@ -1,12 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Font/appleFonts.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Icon/UITexture/Icon_SquareStraight.png" type="Texture" id=2]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 175, 180 )
+margin_left = 30.0
+margin_right = 25.0
 
 [node name="SearchPanel" type="Panel"]
 margin_right = 936.0
@@ -18,7 +25,12 @@ __meta__ = {
 [node name="SearchLabel" type="LineEdit" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_colors/cursor_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
+custom_styles/read_only = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
 placeholder_text = "输入搜索的内容..."
 caret_blink = true
 __meta__ = {

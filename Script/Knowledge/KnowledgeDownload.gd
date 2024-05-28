@@ -70,6 +70,11 @@ func _ChioseKnowledgeNode(knowledgeNode):
 			)
 			pass
 		"Ceph":
+			_initKnowledgeVBox(
+				allResources.ArrayKnowledgeCephDownloadResourcesTitle.size(),
+				allResources.ArrayKnowledgeCephDownloadResourcesTitle,
+				allResources.ArrayKnowledgeCephDownloadResourcesTitleText
+			)
 			pass
 		"Docker":
 			pass

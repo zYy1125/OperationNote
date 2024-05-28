@@ -13,6 +13,7 @@ config_version=4
 config/name="OperationNote"
 run/main_scene="res://Scene/HomeNode.tscn"
 config/icon="res://icon.png"
+config/windows_native_icon="res://Icon/ICO/Icon.ico"
 
 [autoload]
 
@@ -22,6 +23,7 @@ allResources="*res://MyResources/AllResources.gd"
 
 window/size/width=1280
 window/size/height=640
+window/size/resizable=false
 
 [physics]
 
