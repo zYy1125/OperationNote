@@ -67,6 +67,11 @@ func _ChioseKnowledgeNode(knowledgeNode):
 			)
 			pass
 		"Docker":
+			_initKnowledgeVBox(
+				allResources.ArrayKnowledgeDockerResourcesTitle.size(),
+				allResources.ArrayKnowledgeDockerResourcesTitle,
+				allResources.ArrayKnowledgeDockerResourcesTitleText
+			)
 			pass
 		"Ansible":
 			_initKnowledgeVBox(
@@ -146,6 +151,13 @@ func _ChioseKnowledgeNode(knowledgeNode):
 				allResources.ArrayKnowledgeGithubResourcesTitle.size(),
 				allResources.ArrayKnowledgeGithubResourcesTitle,
 				allResources.ArrayKnowledgeGithubResourcesTitleText
+			)
+			pass
+		"Jellyfin":
+			_initKnowledgeVBox(
+				allResources.ArrayKnowledgeJellyfinResourcesTitle.size(),
+				allResources.ArrayKnowledgeJellyfinResourcesTitle,
+				allResources.ArrayKnowledgeJellyfinResourcesTitleText
 			)
 			pass
 	pass

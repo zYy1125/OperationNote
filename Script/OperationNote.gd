@@ -172,6 +172,9 @@ func _on_KnowledgeNode_input(event,body_item):
 			"Github":
 				_chioseKnowledgeKey("Github")
 				pass
+			"Jellyfin":
+				_chioseKnowledgeKey("Jellyfin")
+				pass
 		pass
 	pass
 

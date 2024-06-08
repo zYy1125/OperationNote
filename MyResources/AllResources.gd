@@ -21,7 +21,8 @@ var ChioseDownloadUrl="http://www.baidu.com"
 var ArrayAllKnowledgeNodeResources = ["Linux",
 	"Jdk","Tomcat","Mysql","Oracle","Sqlserver","Nginx","Ceph","Docker",
 	"Ansible","Chrony","Elk","Hadoop","Ntpd","Kubernetes","Prometheus",
-	"RabbitMQ","RocketMQ","Kafka","CentosKernelUpdate","RAID","Github"
+	"RabbitMQ","RocketMQ","Kafka","CentosKernelUpdate","RAID","Github",
+	"Jellyfin"
 ]
 
 
@@ -53,7 +54,8 @@ var ArrayAllKnowledgeNodeInfoResources = {
 	"Kafka":["HelloKafka\nKafka是由Apache软件基金会开发的一个开源流处理平台,由Scala和Java编写.Kafka是一种高吞吐量的分布式发布订阅消息系统,它可以处理消费者在网站中的所有动作流数据.这种动作（网页浏览,搜索和其他用户的行动）是在现代网络上的许多社会功能的一个关键因素.这些数据通常是由于吞吐量的要求而通过处理日志和日志聚合来解决.对于像Hadoop一样的日志数据和离线分析系统,但又要求实时处理的限制,这是一个可行的解决方案.Kafka的目的是通过Hadoop的并行加载机制来统一线上和离线的消息处理,也是为了通过集群来提供实时的消息."],
 	"CentosKernelUpdate":["CentOS升级版本及内核"],
 	"RAID":["RAID"],
-	"Github":["Github"]
+	"Github":["Github"],
+	"Jellyfin":["Jellyfin是免费、开源的媒体服务器解决方案,它能让我们轻松地管理和访问个人媒体文件,如电影、音乐等.本文将向您介绍如何快速搭建和部署Jellyfin,并分享一些最佳实践和技巧,帮助您更好地利用这个强大的媒体服务器解决方案.无论您是媒体爱好者、家庭用户还是数字内容创作者,Jellyfin都将是一个令人愉悦的工具,让您的媒体体验更加便捷和个性化."]
 	}
 
 
@@ -64,13 +66,14 @@ var ArrayAllKnowledgeNodeInfoResources = {
 var ArrayKnowledgeInstructResources = {
 	"Jdk":["Jdk查询版本[常用于验证jdk是否安装]:\n\tjava -version\n后台运行SpringBoot工程jar:\n\tnohup java -jar test.jar &\n获取本机Java程序的pid:\n\tjps\n获取本机Java程序进程的详细信息:\n\tjps -mlvV\n监控指定pid的GC信息:\n\tjstat -gc pid\n查看指定进程pid的堆栈信息:\n\tjstack -F pid > jstack.log"],
 	"Tomcat":["设置JVM的启动参数[catalina.sh]:\n\t[JAVA_OPTS=\"$JAVA_OPTS -Xmx3550m -Xms3550m -Xss128k -XX:NewRatio=4 -XX:SurvivorRatio=4\"]\n设置Tocmat-server.xml参数:\"\n\t<Connector\n\tport=\"8084\"\n\tprotocol=\"org.apache.coyote.http11.Http11AprProtocol\"\n\tconnectionTimeout=\"20000\"\n\tminSpareThreads=\"5\"\n\tmaxSpareThreads=\"100\"\n\tmaxThreads=\"1000\"\n\tacceptCount=\"200\"\n\tmaxHttpHeaderSize=\"8192\"\n\tURIEncoding=\"UTF-8\"\n\tdisableUploadTimeout=\"True\"\n\tenableLookups=\"false\"\n\tcompression=\"on\"\n\tcompressableMimeType=\"text/html,text/xml,text/plain,text/css,text/javascript,text/json,application/x-javascript,application/javascript,application/json\"\n\tredirectPort=\"8443\" />"],
-	"Mysql":["22222"],
-	"Oracle":["33333"],
-	"Sqlserver":["44444"],
-	"Nginx":["55555"],
-	"CentosKernelUpdate":["55555"],
+	"Mysql":["Mysql"],
+	"Oracle":["Oracle"],
+	"Sqlserver":["Sqlserver"],
+	"Nginx":["Nginx"],
+	"CentosKernelUpdate":["CentosKernelUpdate"],
 	"RAID":["RAID"],
-	"Github":["Github"]
+	"Github":["Github"],
+	"Jellyfin":["Jellyfin"]
 }
 
 ###########
@@ -371,14 +374,39 @@ var ArrayKnowledgeCephDownloadResourcesTitleText = [
 #############
 # 知识节点对应的数据 - Docker|Key
 var ArrayKnowledgeDockerResourcesTitle = [
+	"1、基础环境以及相关文件",
+	"2、查看内核版本支持",
+	"3、下载文件并上传至服务器/tmp",
+	"4、解压文件并移动路径",
+	"5、将docker注册为service并启动",
+	"6、验证",
 	"",
 	""
 ]
 # 知识节点对应的数据 - Docker|Value
 var ArrayKnowledgeDockerResourcesTitleText = [
+	" ----------------\n|     CentOS 7.*     |\n ----------------\n -----------------------------------------\n|     docker.service     |     docker-18.06.1-ce.tgz     |\n -----------------------------------------",
+	"# 内核小于3.0时需手动升级-自行跳转Linux内核升级模块\n[root@cephmaster ~]# uname -a\n[root@cephmaster ~]# lsb_release -a",
+	"#手动将文件上传后\n[root@cephmaster ~]# cd /tmp\n[root@cephmaster ~]# tar -xvf docker-18.06.1-ce.tgz",
+	"[root@cephmaster ~]# cp docker/* /usr/bin/",
+	"# docker.service配置通过作者模板直接复制\n[root@cephmaster ~]# vim /etc/systemd/system/docker.service\n[root@cephmaster ~]# vchmod +x /etc/systemd/system/docker.service\n[root@cephmaster ~]# systemctl daemon-reload\n[root@cephmaster ~]# systemctl start docker\n[root@cephmaster ~]# systemctl enable docker.service",
+	"#查看Docker状态\n[root@cephmaster ~]# systemctl status docker\n#查看Docker版本\n[root@cephmaster ~]# docker -v",
 	"",
 	""
 ]
+
+var ArrayKnowledgeDockerDownloadResourcesTitle = [
+	"Docker部署资源文件",
+	""
+]
+var ArrayKnowledgeDockerDownloadResourcesTitleText = [
+	"链接：https://pan.baidu.com/s/1U7YhspROuWCfbxX1q4jokw?pwd=735y",
+	""
+]
+
+
+
+
 #############
 #  Ansible  #
 #############
@@ -684,6 +712,45 @@ var ArrayKnowledgeGithubResourcesTitleText = [
 	"",
 	"$git pull 你的项目地址",
 	"重复步骤789",
+	""
+]
+
+
+#############
+#  Jellyfin #
+#############
+# Jellyfin|Value
+var ArrayKnowledgeJellyfinResourcesTitle = [
+	"前言",
+	"1、下载资源文件并上传至/tmp/",
+	"2、部署ffmpeg",
+	"3、安装Jellyfin",
+	"4、启动jellyfin",
+	"5、firewalld放行防火墙[可直接关闭防火墙systemctl stop firewalld.service][可选]",
+	"6、Jellyfin配置FFMPEG路径",
+	"7、验证 - 访问地址:",
+	"参考:",
+	""
+]
+var ArrayKnowledgeJellyfinResourcesTitleText = [
+	"Jellyfin是免费、开源的媒体服务器解决方案,它能让我们轻松地管理和访问个人媒体文件,如电影、音乐等.本文将向您介绍如何快速搭建和部署Jellyfin,并分享一些最佳实践和技巧,帮助您更好地利用这个强大的媒体服务器解决方案.无论您是媒体爱好者、家庭用户还是数字内容创作者,Jellyfin都将是一个令人愉悦的工具,让您的媒体体验更加便捷和个性化.",
+	"#ffmpeg下载地址：https://johnvansickle.com/ffmpeg/\n#jellyfin下载地址:https://repo.jellyfin.org/releases/server/centos/stable/",
+	"#解压文件\n[root@master ~]#cd /tmp\n[root@master ~]#xz -d ffmpeg-release-amd64-static.tar.xz\n[root@master ~]#tar -xvf ffmpeg-release-amd64-static.tar\n# 移动软件包\n[root@master ~]#mv -f ffmpeg-7.0-amd64-static/ /opt/ffmpeg/\n# 配置环境变量\n#[root@master ~]#vi ~/.bashrc\n# 在文件的末尾添加以下行:\n[root@master ~]#cat <<EOF >> ~/.bashrc\nexport PATH=\"/opt/ffmpeg:\\$PATH\"\nEOF\n# 保存并重新加载bash配置文件,使新的环境变量生效\n[root@master ~]#source ~/.bashrc\n# 使用-version验证是否安装成功\n[root@master ~]#ffmpeg -version",
+	"#安装依赖\n[root@master ~]#yum install -y libicu fontconfig\n# 名称根据实际下载替换[移动到上传的资源文件中]\n[root@master ~]#cd /tmp/\n[root@master ~]#rpm -Uvh --nodeps jellyfin-10.8.11-1.el7.x86_64.rpm \n[root@master ~]#rpm -Uvh --nodeps jellyfin-server-10.8.11-1.el7.x86_64.rpm\n[root@master ~]#rpm -Uvh --nodeps jellyfin-web-10.8.11-1.el7.noarch.rpm\n#[root@master ~]#rpm -Uvh --nodeps *.rpm\n#jellyfin-10.8.11-1.el7.x86_64.rpm\n#jellyfin-server-10.8.11-1.el7.x86_64.rpm\n#jellyfin-web-10.8.11-1.el7.noarch.rpm",
+	"#启动jellyfin\n[root@master ~]#systemctl start jellyfin\n#添加开机启动\n[root@master ~]#systemctl enable jellyfin\n#查看服务运行状态\n[root@master ~]#systemctl status jellyfin",
+	"#放行 HTTP 端口(默认为 8096):用于 Web 界面的访问和媒体流的传输\n[root@master ~]#sudo firewall-cmd --zone=public --add-port=8096/tcp --permanent\n# 放行 HTTPS 端口(默认为 8920):用于启用 SSL/TLS 加密的安全连接,提供更安全的访问方式\n[root@master ~]#sudo firewall-cmd --zone=public --add-port=8920/tcp --permanent\n# 放行 DLNA 端口(默认为 1900):用于 DLNA 设备与 Jellyfin 服务器之间的通信\n[root@master ~]#sudo firewall-cmd --zone=public --add-port=1900/udp --permanent\n# 放行 Bonjour/mDNS 端口(默认为 5353):用于局域网内的设备发现\n[root@master ~]#sudo firewall-cmd --zone=public --add-port=5353/udp --permanent\n# 应用修改后的防火墙规则\n[root@master ~]#sudo firewall-cmd --reload\n# 验证端口是否已成功放行\n[root@master ~]#sudo firewall-cmd --zone=public --list-ports",
+	"# 找到配置文件后,修改ffmpeg参数\n[root@master ~]#find / -name encoding.xml\n#vim /etc/jellyfin/encoding.xml修改或者添加以下两项值\n<EncoderAppPath>/opt/ffmpeg/ffmpeg</EncoderAppPath>\n<EncoderAppPathDisplay>/opt/ffmpeg/ffmpeg</EncoderAppPathDisplay>\n#转码设置:\n#默认MP4可以直接播放、RMVB需要开启转码,因为我是linux虚拟机,所以选中Video Acceleration(VAAPI)-多选框全选",
+	"#http://192.168.xx.xxx:8096/",
+	"https://blog.csdn.net/qq_45664055/article/details/133860344\nhttps://jellyfin.org/downloads/",
+	""
+]
+
+var ArrayKnowledgeJellyfinDownloadResourcesTitle = [
+	"Jellyfin部署资源文件",
+	""
+]
+var ArrayKnowledgeJellyfinDownloadResourcesTitleText = [
+	"https://pan.baidu.com/s/1_ce37P1Z095472zWcXMeGA?pwd=ym3k",
 	""
 ]
 

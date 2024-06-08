@@ -77,6 +77,11 @@ func _ChioseKnowledgeNode(knowledgeNode):
 			)
 			pass
 		"Docker":
+			_initKnowledgeVBox(
+				allResources.ArrayKnowledgeDockerDownloadResourcesTitle.size(),
+				allResources.ArrayKnowledgeDockerDownloadResourcesTitle,
+				allResources.ArrayKnowledgeDockerDownloadResourcesTitleText
+			)
 			pass
 		"Ansible":
 			pass
@@ -87,8 +92,6 @@ func _ChioseKnowledgeNode(knowledgeNode):
 		"Hadoop":
 			pass
 		"Ntpd":
-			pass
-		"Docker":
 			pass
 		"Kubernetes":
 			_initKnowledgeVBox(
@@ -117,6 +120,13 @@ func _ChioseKnowledgeNode(knowledgeNode):
 			pass
 		"Github":
 			
+			pass
+		"Jellyfin":
+			_initKnowledgeVBox(
+				allResources.ArrayKnowledgeJellyfinDownloadResourcesTitle.size(),
+				allResources.ArrayKnowledgeJellyfinDownloadResourcesTitle,
+				allResources.ArrayKnowledgeJellyfinDownloadResourcesTitleText
+			)
 			pass
 	pass
 
