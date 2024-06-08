@@ -1,6 +1,6 @@
 这是一个Godot项目,必须配置Godot引擎工具,使用IDER,Eclipse不能够进行编译打包,如需体验效果可以在Windows平台双击运行项目根目录下的"小棉袄".exe
 
-[Windows软件][类Jquery语言]
+[类似有道云记录文档的Windows软件][类Jquery语言]
 
   初衷:
   
