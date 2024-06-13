@@ -380,18 +380,16 @@ var ArrayKnowledgeDockerResourcesTitle = [
 	"4、解压文件并移动路径",
 	"5、将docker注册为service并启动",
 	"6、验证",
-	"",
 	""
 ]
 # 知识节点对应的数据 - Docker|Value
 var ArrayKnowledgeDockerResourcesTitleText = [
 	" ----------------\n|     CentOS 7.*     |\n ----------------\n -----------------------------------------\n|     docker.service     |     docker-18.06.1-ce.tgz     |\n -----------------------------------------",
 	"# 内核小于3.0时需手动升级-自行跳转Linux内核升级模块\n[root@cephmaster ~]# uname -a\n[root@cephmaster ~]# lsb_release -a",
-	"#手动将文件上传后\n[root@cephmaster ~]# cd /tmp\n[root@cephmaster ~]# tar -xvf docker-18.06.1-ce.tgz",
+	"#手动将文件上传后\n[root@cephmaster ~]# cd /tmp\n[root@cephmaster ~]# tar -zxvf docker-18.06.3-ce.tar",
 	"[root@cephmaster ~]# cp docker/* /usr/bin/",
-	"# docker.service配置通过作者模板直接复制\n[root@cephmaster ~]# vim /etc/systemd/system/docker.service\n[root@cephmaster ~]# vchmod +x /etc/systemd/system/docker.service\n[root@cephmaster ~]# systemctl daemon-reload\n[root@cephmaster ~]# systemctl start docker\n[root@cephmaster ~]# systemctl enable docker.service",
+	"# docker.service配置通过作者模板直接复制\n[root@cephmaster ~]# vim /etc/systemd/system/docker.service\n[root@cephmaster ~]# chmod +x /etc/systemd/system/docker.service\n[root@cephmaster ~]# systemctl daemon-reload\n[root@cephmaster ~]# systemctl start docker\n[root@cephmaster ~]# systemctl enable docker.service",
 	"#查看Docker状态\n[root@cephmaster ~]# systemctl status docker\n#查看Docker版本\n[root@cephmaster ~]# docker -v",
-	"",
 	""
 ]
 
@@ -772,7 +770,6 @@ var ArrayKnowledgeLinuxInstructResourcesTitle = [
 	"free",
 	"df",
 	"top",
-	"fstab",
 	"fdisk",
 	"lsblk",
 	"mount",
@@ -782,14 +779,12 @@ var ArrayKnowledgeLinuxInstructResourcesTitle = [
 	"trancert",
 	"ifconfig",
 	"ip addr",
-	"",
 	"sed",
 	"awk",
-	"",
-	"",
-	"",
 	"find",
-	"",
+	"vi/vim",
+	"view",
+	""
 ]
 var ArrayKnowledgeLinuxInstructResourcesTitleText = [
 	"ls:查看目录信息\n-------------------------------------------------------------------------------------\n相关命令:\n-------------------------------------------------------------------------------------\n查看当前目录下所有文件以及详细信息:\n	[root@* ~]ls -la",
@@ -800,24 +795,25 @@ var ArrayKnowledgeLinuxInstructResourcesTitleText = [
 	"tail:查看文件内容\n-------------------------------------------------------------------------------------\n相关命令:\n-------------------------------------------------------------------------------------\n查看0-3333行的日志文件:\n	[root@* ~]tail -n 3333 log.log\n查看实时日志文件:\n	[root@* ~]tail -f log.log\n查看日志文件中带有ERROR字符串的行:\n	[root@* ~]tail -n 3333 log.log | grep ERROR",
 	"less:分页查看文件内容",
 	"yum:下载安装服务/安装依赖神器\n-------------------------------------------------------------------------------------\n相关命令:\n-------------------------------------------------------------------------------------\nYum安装gcc服务:\n	[root@* ~]yum install -y gcc\n网络不行时建议换:\n	[root@* ~]yumdownloader",
-	"",
-	"",
-	"free:查看服务器内存信息\n关键字：sync、caches\n查看内存信息:\n[root@* ~]free -h\n-------------------------------------------------------------------------------------\n			total        used        free      shared  buff/cache   available\nMem:		3.7G       685M       1.1G       212M     1.9G          2.5G\nSwap:	 	0B          0B         0B\n-------------------------------------------------------------------------------------\ntotal   总物理内存\nused    已使用内存，一般情况这个值会比较大，因为这个值包括了cache+应用程序使用的内存\nfree    完全未被使用的内存\nshared  应用程序共享内存\nbuffers 缓存，主要用于目录方面,inode值等(ls大目录可看到这个值增加)\ncached  缓存，用于已打开的文件\n-------------------------------------------------------------------------------------\n手动释放内存:[sync - 将缓存数据写入硬盘，避免数据丢失]\n[root@* ~]echo 0 > /proc/sys/vm/drop_caches\n[root@* ~]echo 1 > /proc/sys/vm/drop_caches\n[root@* ~]echo 2 > /proc/sys/vm/drop_caches\n[root@* ~]echo 3 > /proc/sys/vm/drop_caches#[常用此命令进行测试环境释放内存][生产环境慎用]\n#(0:不释放 1：释放页缓存 2：释放dentries和inodes 3：释放所有缓存)\n","","",
-	"",
-	"",
-	"",
-	"",
-	"",
-	"",
-	"",
-	"",
-	"ifconfig:查看当前服务器网络信息\n-------------------------------------------------------------------------------------\n相关命令:ipaddr、systemctl\n-------------------------------------------------------------------------------------\n配置当前服务器网络:[建议仅参考IP+DNS+BOOTPROTO配置|其余配置默认即可]\n    TYPE=Ethernet\n    PROXY_METHOD=none\n    BROWSER_ONLY=no\n    BOOTPROTO=\"static\"\n    DEFROUTE=yes\n    IPV4_FAILURE_FATAL=no\n    IPV6INIT=yes\n    IPV6_AUTOCONF=yes\n    IPV6_DEFROUTE=yes\n    IPV6_FAILURE_FATAL=no\n    IPV6_ADDR_GEN_MODE=stable-privacy\n    NAME=enp4s0\n    UUID=489db9fe-d50b-47a1-b031-0ee7fc9cdfff\n    DEVICE=enp4s0\n    ONBOOT=yes\n    IPADDR=\"192.168.199.110\"#更换实际IP\n    NETMASK=\"255.255.255.0\"\n    GATEWAY=\"192.168.199.1\"#更换实际网关\n    DNS1=\"8.8.8.8\"\n    DNS2=\"114.114.114.114\"\n重启网卡:\n	[root@* ~]systemctl restart network\n","","",
-	"",
-	"",
-	"",
-	"",
-	"",
-	"find：查找命令是Linux系统中最重要和最常用的命令之一。查找用于根据与参数匹配的文件指定的条件来搜索和查找文件和目录列表的命令.查找可以在各种条件下使用.您可以通过权限.用户.组.文件类型.日期.大小等可能的条件查找文件\n-------------------------------------------------------------------------------------------------\n# 根据名称查找文件的基本查找命令\n      find test.c 在当前工作目录中查找名称为test.c的所有文件[精确查找]\n      find /home -name test 查找指定目录的所有文件,名称为test\n      find /home -iname test 查找指定目录的所有文件,名称为test[忽略大小写]\n      find / -type d -name test 在/目录中查找名称为test的所有目录\n      find / -type f -name test.php 在/目录中遍历查找所有名称为test.php的文件\n-------------------------------------------------------------------------------------------------\n# 根据他们的权限查找文件\n      find -type f -perm 0777 -print 查找权限为777权限的文件\n      find / -type f ! -perm 777 查找所有文件未经许可777\n      find / -perm /u=r 查找只读文件\n      find / -perm /a=x 查找可执行文件\n      find / tmp -type f -empty 查找指定路径下所有空文件\n      find / tmp -type d -empty 查找指定路径下的空目录\n      find /tmp -type f -name \".*\" 查找隐藏文件\n-------------------------------------------------------------------------------------------------\n# 根据用户组查找文件\n      find ~ -user A 查找指定目录下用户A的文件\n      find /home -group B 查找指定目录下B组的文件\n      find ~ -user C -iname \"*.c\" 查找用户的指定格式文件\n-------------------------------------------------------------------------------------------------\n# 根据日期查找文件\n      find / -user root -name test.c 查找最近50天修改的文件\n      find / -atime 50 查找最近50天访问的文件\n      find / -mtime +50 -mtime -100 查找50-100天内修改的文件\n      find / -cmin -60 查找过去1小时更改的文件\n      find / -mmin -60 查找过去1小时修改的文件\n      find  / amin -60 查找1小时内访问过的文件\n-------------------------------------------------------------------------------------------------\n# 根据文件大小查找文件\n      find / -size 50M 找到50M的文件\n      find / -size +50M -size -100M 查找50-100M的文件\n      find / -type f -name *.mp3 -size +10M 查找大于10M的mp3文件\n常用:\n      find / -name abc.txt 在根目录下查找文件名为abc.txt的文件\n      find -L / -xdev -inum 69055934 2>/dev/null 在根目下根据Inode号查找对应的文件[常用于硬连接比对]\n-------------------------------------------------------------------------------------------------",
+	"rpm:通过rpm包安装服务\n-------------------------------------------------------------------------------------\n相关命令:\n-------------------------------------------------------------------------------------\nrpm安装服务:\n	[root@* ~]rpm -ivh xxxxxxxxx.rpm\nrpm卸载服务:\n	[root@* ~]rpm -e --nodeps xxxxxxxxx.rpm\nrpm查询服务:\n	[root@* ~]rpm -qa | grep ServiceName",
+	"kill:杀死进程\n-------------------------------------------------------------------------------------\n相关命令:ps -ef | grep ServiceName\n-------------------------------------------------------------------------------------\n杀死指定PID进程:\n	[root@* ~]kill -9 PID\n#强制关闭8080进程\n	[root@* ~]ps -ef | grep 8080 | grep -v grep | xargs kill -9",
+	"free:查看服务器内存信息\n关键字：sync、caches\n查看内存信息:\n[root@* ~]free -h\n-------------------------------------------------------------------------------------\n			total        used        free      shared  buff/cache   available\nMem:		3.7G       685M       1.1G       212M     1.9G          2.5G\nSwap:	 	0B          0B         0B\n-------------------------------------------------------------------------------------\ntotal   总物理内存\nused    已使用内存，一般情况这个值会比较大，因为这个值包括了cache+应用程序使用的内存\nfree    完全未被使用的内存\nshared  应用程序共享内存\nbuffers 缓存，主要用于目录方面,inode值等(ls大目录可看到这个值增加)\ncached  缓存，用于已打开的文件\n-------------------------------------------------------------------------------------\n手动释放内存:[sync - 将缓存数据写入硬盘，避免数据丢失]\n[root@* ~]echo 0 > /proc/sys/vm/drop_caches\n[root@* ~]echo 1 > /proc/sys/vm/drop_caches\n[root@* ~]echo 2 > /proc/sys/vm/drop_caches\n[root@* ~]echo 3 > /proc/sys/vm/drop_caches#[常用此命令进行测试环境释放内存][生产环境慎用]\n#(0:不释放 1：释放页缓存 2：释放dentries和inodes 3：释放所有缓存)\n",
+	"df:磁盘空间占用情况\n-------------------------------------------------------------------------------------\n相关命令:\n-------------------------------------------------------------------------------------\n查看磁盘信息:\n	[root@* ~]df -h",
+	"top:",
+	"fdisk:分区管理 \n-------------------------------------------------------------------------------------\n相关命令:lsblk、df -Th\n-------------------------------------------------------------------------------------\n查看分区信息:\n	[root@* ~]fdisk -l\n查看分区信息编辑分区所在的硬盘[可能存在多个分区号]:\n	[root@* ~]fdisk /dev/sda",
+	"lsblk:",
+	"mount:挂载设备 \n-------------------------------------------------------------------------------------\n相关命令:lsblk、df -Th\n-------------------------------------------------------------------------------------\n挂载磁盘[默认读写]:\n	[root@* ~]mount /dev/sdb1 /test1\n解除挂载:\n	[root@* ~]umount /test1\n#修改挂载磁盘读写	[root@* ~]mount -o umount,rw /dev/sdb1 /test1#设置为可读可写\nmount -o umount,ro /dev/sdb1 /test1#置为可读不可写",
+	"umount:卸载挂载的设备",
+	"ping:测试指定ip的通讯链接信息 \n-------------------------------------------------------------------------------------\n相关命令:\n-------------------------------------------------------------------------------------\n测试地址5次通讯链接:\n	[root@* ~]ping -c 5 127.0.0.1 /test1\n测试地址的通讯连接,每3秒一次:\n	[root@* ~]ping -i 3 127.0.0.1\n",
+	"telnet:",
+	"trancert:",
+	"ifconfig:查看当前服务器网络信息\n-------------------------------------------------------------------------------------\n相关命令:ipaddr、systemctl\n-------------------------------------------------------------------------------------\n配置当前服务器网络:[建议仅参考IP+DNS+BOOTPROTO配置|其余配置默认即可]\n    TYPE=Ethernet\n    PROXY_METHOD=none\n    BROWSER_ONLY=no\n    BOOTPROTO=\"static\"\n    DEFROUTE=yes\n    IPV4_FAILURE_FATAL=no\n    IPV6INIT=yes\n    IPV6_AUTOCONF=yes\n    IPV6_DEFROUTE=yes\n    IPV6_FAILURE_FATAL=no\n    IPV6_ADDR_GEN_MODE=stable-privacy\n    NAME=enp4s0\n    UUID=489db9fe-d50b-47a1-b031-0ee7fc9cdfff\n    DEVICE=enp4s0\n    ONBOOT=yes\n    IPADDR=\"192.168.199.110\"#更换实际IP\n    NETMASK=\"255.255.255.0\"\n    GATEWAY=\"192.168.199.1\"#更换实际网关\n    DNS1=\"8.8.8.8\"\n    DNS2=\"114.114.114.114\"\n重启网卡:\n	[root@* ~]systemctl restart network\n",
+	"ip addr:查看网络信息[在ifconfig失效的时候使用]",
+	"sed:利用脚本处理、编辑文件",
+	"awk:截取列[缩减隔空]\n-------------------------------------------------------------------------------------\n相关命令:\n-------------------------------------------------------------------------------------\nawk '{print $3}' 				#获取第三列得值\nawk 'END{print}' 				#打印文件最后一行\nawk '{print $3,$5}'  			#awk输出指定多列[第3,5列内容]\nawk '{print NF}' test5.txt		#查看文件存在列数",
+	"find：查找命令是Linux系统中最重要和最常用的命令之一.查找用于根据与参数匹配的文件指定的条件来搜索和查找文件和目录列表的命令.查找可以在各种条件下使用.您可以通过权限.用户.组.文件类型.日期.大小等可能的条件查找文件\n-------------------------------------------------------------------------------------------------\n# 根据名称查找文件的基本查找命令\n      find test.c 在当前工作目录中查找名称为test.c的所有文件[精确查找]\n      find /home -name test 查找指定目录的所有文件,名称为test\n      find /home -iname test 查找指定目录的所有文件,名称为test[忽略大小写]\n      find / -type d -name test 在/目录中查找名称为test的所有目录\n      find / -type f -name test.php 在/目录中遍历查找所有名称为test.php的文件\n-------------------------------------------------------------------------------------------------\n# 根据他们的权限查找文件\n      find -type f -perm 0777 -print 查找权限为777权限的文件\n      find / -type f ! -perm 777 查找所有文件未经许可777\n      find / -perm /u=r 查找只读文件\n      find / -perm /a=x 查找可执行文件\n      find / tmp -type f -empty 查找指定路径下所有空文件\n      find / tmp -type d -empty 查找指定路径下的空目录\n      find /tmp -type f -name \".*\" 查找隐藏文件\n-------------------------------------------------------------------------------------------------\n# 根据用户组查找文件\n      find ~ -user A 查找指定目录下用户A的文件\n      find /home -group B 查找指定目录下B组的文件\n      find ~ -user C -iname \"*.c\" 查找用户的指定格式文件\n-------------------------------------------------------------------------------------------------\n# 根据日期查找文件\n      find / -user root -name test.c 查找最近50天修改的文件\n      find / -atime 50 查找最近50天访问的文件\n      find / -mtime +50 -mtime -100 查找50-100天内修改的文件\n      find / -cmin -60 查找过去1小时更改的文件\n      find / -mmin -60 查找过去1小时修改的文件\n      find  / amin -60 查找1小时内访问过的文件\n-------------------------------------------------------------------------------------------------\n# 根据文件大小查找文件\n      find / -size 50M 找到50M的文件\n      find / -size +50M -size -100M 查找50-100M的文件\n      find / -type f -name *.mp3 -size +10M 查找大于10M的mp3文件\n常用:\n      find / -name abc.txt 在根目录下查找文件名为abc.txt的文件\n      find -L / -xdev -inum 69055934 2>/dev/null 在根目下根据Inode号查找对应的文件[常用于硬连接比对]\n-------------------------------------------------------------------------------------------------",
+	"vi/vim:文本编辑工具",
+	"view:文本查看工具",
 	""
 ]
 
@@ -946,4 +942,37 @@ var ArrayAllDocumentDownloadPanelResources = {
 		["",
 			"",
 			""]
+}
+
+# QuestionTip - 摸鱼页面[问题加载]
+var _QuestionTipValue = {
+	# 标识
+	#	问题
+	#	问题提示
+	#	问题答案
+	0:
+		["请确保系统指令正常执行.","cat File.txt","echo Attack > File.txt"],
+	1:
+		["请确保系统指令正常执行.","cat File.txt","echo Attack > File.txt"],
+	2:
+		["请测试java项目的端口通讯","telnet","telnet 127.0.0.1 8081 "],
+	3:
+		["","",""],
+	4:
+		["","",""],
+	5:
+		["","",""],
+	6:
+		["","",""],
+	7:
+		["","",""],
+	8:
+		["","",""],
+	9:
+		["","",""],
+	10:
+		["","",""],
+	11:
+		["","",""]
+	
 }

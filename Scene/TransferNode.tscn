@@ -106,7 +106,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="QuestionBtn" type="Button" parent="OperationNoteKnowledgePanel/ListTitlePanel"]
+[node name="GameBtn" type="Button" parent="OperationNoteKnowledgePanel/ListTitlePanel"]
 margin_top = 160.0
 margin_right = 168.0
 margin_bottom = 224.0
@@ -115,18 +115,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="QuestionLabel" type="Label" parent="OperationNoteKnowledgePanel/ListTitlePanel/QuestionBtn"]
+[node name="GameLabel" type="Label" parent="OperationNoteKnowledgePanel/ListTitlePanel/GameBtn"]
 margin_right = 192.0
 margin_bottom = 64.0
 custom_fonts/font = SubResource( 2 )
-text = "  问题"
+text = "  摸鱼"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="OperationNoteKnowledgePanel/ListTitlePanel/QuestionBtn"]
+[node name="TextureRect" type="TextureRect" parent="OperationNoteKnowledgePanel/ListTitlePanel/GameBtn"]
 margin_right = 64.0
 margin_bottom = 64.0
 texture = ExtResource( 3 )
@@ -246,8 +246,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ListGamePanel" type="Panel" parent="OperationNoteKnowledgePanel"]
+visible = false
+self_modulate = Color( 0.545098, 0, 1, 0.0980392 )
+margin_left = 192.0
+margin_top = 24.0
+margin_right = 1128.0
+margin_bottom = 568.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="OperationNoteKnowledgePanel/ListTitlePanel/ServiceBtn" to="." method="_on_ServiceBtn_pressed"]
 [connection signal="pressed" from="OperationNoteKnowledgePanel/ListTitlePanel/DocumentBtn" to="." method="_on_DocumentBtn_pressed"]
-[connection signal="pressed" from="OperationNoteKnowledgePanel/ListTitlePanel/QuestionBtn" to="." method="_on_QuestionBtn_pressed"]
+[connection signal="pressed" from="OperationNoteKnowledgePanel/ListTitlePanel/GameBtn" to="." method="_on_GameBtn_pressed"]
 [connection signal="pressed" from="OperationNoteKnowledgePanel/ListTitlePanel/HomeBtn" to="." method="_on_HomeBtn_pressed"]
 [connection signal="pressed" from="OperationNoteKnowledgePanel/ListTitlePanel/AboutBtn" to="." method="_on_AboutBtn_pressed"]

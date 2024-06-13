@@ -13,6 +13,9 @@ var documentPanel
 # 关于节点
 var AboutPanel = preload("res://Scene/AboutPanel.tscn")
 var aboutPanel
+# 摸鱼节点
+var GamePanel = preload("res://Scene/GamePanel.tscn")
+var gamePanel
 
 
 
@@ -81,13 +84,13 @@ func _disableListPanel():
 	# close
 	$"OperationNoteKnowledgePanel/ListServicePanel".visible  = false
 	$"OperationNoteKnowledgePanel/ListDocumentPanel".visible  = false
-	$"OperationNoteKnowledgePanel/ListQuestionPanel".visible  = false
 	$"OperationNoteKnowledgePanel/ListAboutPanel".visible  = false
+	$"OperationNoteKnowledgePanel/ListGamePanel".visible  = false
 	
 	# disable
 	$"OperationNoteKnowledgePanel/ListTitlePanel/ServiceBtn".disabled = true
 	$"OperationNoteKnowledgePanel/ListTitlePanel/DocumentBtn".disabled = true
-	$"OperationNoteKnowledgePanel/ListTitlePanel/QuestionBtn".disabled = true
+	$"OperationNoteKnowledgePanel/ListTitlePanel/GameBtn".disabled = true
 	$"OperationNoteKnowledgePanel/ListTitlePanel/AboutBtn".disabled = true
 	pass
 #激活页面节点
@@ -101,7 +104,7 @@ func _enableDocumentBtn():
 	pass
 func _enableQuestionBtn():
 	# enable
-	$"OperationNoteKnowledgePanel/ListTitlePanel/QuestionBtn".disabled = false
+	$"OperationNoteKnowledgePanel/ListTitlePanel/GameBtn".disabled = false
 	pass
 func _enableAboutBtn():
 	# enable
@@ -118,7 +121,7 @@ func _enableListServicePanel():
 	_enableAboutBtn()
 	# 移除节点
 	_removeChilePanel($"OperationNoteKnowledgePanel/ListDocumentPanel")
-	_removeChilePanel($"OperationNoteKnowledgePanel/ListQuestionPanel")
+	_removeChilePanel($"OperationNoteKnowledgePanel/ListGamePanel")
 	_removeChilePanel($"OperationNoteKnowledgePanel/ListAboutPanel")
 	pass
 # 激活文档页面节点
@@ -130,12 +133,12 @@ func _enableListDocumentPanel():
 	_enableAboutBtn()
 	# 移除节点
 	_removeChilePanel($"OperationNoteKnowledgePanel/ListServicePanel")
-	_removeChilePanel($"OperationNoteKnowledgePanel/ListQuestionPanel")
+	_removeChilePanel($"OperationNoteKnowledgePanel/ListGamePanel")
 	_removeChilePanel($"OperationNoteKnowledgePanel/ListAboutPanel")
 	pass
 # 激活问题页面节点
-func _enableListQuestionPanel():
-	$"OperationNoteKnowledgePanel/ListQuestionPanel".visible  = true
+func _enableListGamePanel():
+	$"OperationNoteKnowledgePanel/ListGamePanel".visible  = true
 	# 激活其他按钮节点
 	_enableServiceBtn()
 	_enableDocumentBtn()
@@ -156,7 +159,7 @@ func _enableListAboutPanel():
 	_enableQuestionBtn()
 	# 移除节点
 	_removeChilePanel($"OperationNoteKnowledgePanel/ListDocumentPanel")
-	_removeChilePanel($"OperationNoteKnowledgePanel/ListQuestionPanel")
+	_removeChilePanel($"OperationNoteKnowledgePanel/ListGamePanel")
 	_removeChilePanel($"OperationNoteKnowledgePanel/ListServicePanel")
 	pass
 # 切换页面Panel移除当前子节点
@@ -166,9 +169,15 @@ func _removeChilePanel(PanelNode):
 		pass
 	pass
 	
-# 问题页面
-func _on_QuestionBtn_pressed():
-	# 
+# 摸鱼页面
+func _on_GameBtn_pressed():
+	# 节点页面激活
+	_showGameNode()
+	# 关闭其他页面节点
+	_disableListPanel()
+	# 激活关于页面节点
+	_enableListGamePanel()
+	# 设置图标焦点
 	_setIconYellow(Vector2(0,160))
 	pass # Replace with function body.
 	
@@ -190,7 +199,7 @@ func _on_AboutBtn_pressed():
 	_setIconYellow(Vector2(0,320))
 	pass # Replace with function body.
 
-# 实例化服务节点
+# 实例化关于节点
 func _initAboutNode():
 	aboutPanel = AboutPanel.instance()
 	$"OperationNoteKnowledgePanel/ListAboutPanel".add_child(aboutPanel)
@@ -203,3 +212,14 @@ func _showAboutNode():
 	pass
 
 
+# 实例化摸鱼节点
+func _initGameNode():
+	gamePanel = GamePanel.instance()
+	$"OperationNoteKnowledgePanel/ListGamePanel".add_child(gamePanel)
+	pass
+func _showGameNode():
+	if($"OperationNoteKnowledgePanel/ListTitlePanel/GameBtn".disabled == false):
+		$"OperationNoteKnowledgePanel/ListTitlePanel/GameBtn".disabled = true
+		_initGameNode()
+		pass
+	pass
